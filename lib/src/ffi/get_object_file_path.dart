@@ -3,7 +3,7 @@ import 'dart:io' show Platform;
 
 // took this piece of code from dart/tflite_native
 /// supported operating systems with architectures
-const Set<String> supported = {'win64'};
+const Set<String> supported = {'win64', 'linux64'};
 
 /// get the file name of blob files based on os
 /// file name doesn't include directory paths

@@ -11,3 +11,6 @@ dev_dependencies:
 scripts:
   version: dart --version
   ping: ping google.com
+  test:
+    - echo test
+    - echo done

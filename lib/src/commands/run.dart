@@ -29,12 +29,16 @@ class RunCommmand extends Command {
       }
 
       final f_arg = arguments.first;
-      final script = definitions.containsKey(f_arg) ? definitions[f_arg] : null;
+      final script =
+          definitions.containsKey(f_arg) ? toList(definitions[f_arg]) : null;
 
       if (script == null) {
         throw 'Script not found';
       }
-      executor('$script ${scriptArguments.join(' ')}');
+
+      for (final s in script) {
+        executor('$s ${scriptArguments.join(' ')}');
+      }
     }
   }
 }

@@ -1,5 +1,11 @@
 version: dart --version
-ping: ping google.com
+ping: ping google.com && echo ok
 test:
   - echo test
   - echo done
+once:
+  execution: once
+  scripts:
+    - echo test
+    - exit
+    - echo "this wont be called"

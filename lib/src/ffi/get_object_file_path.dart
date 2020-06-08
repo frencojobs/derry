@@ -1,8 +1,12 @@
 import 'dart:ffi' as ffi;
 import 'dart:io' show Platform;
 
-// took this code from dart/tflite_native
+// took this piece of code from dart/tflite_native
+/// supported operating systems with architectures
 const Set<String> supported = {'win64'};
+
+/// get the file name of blob files based on os
+/// file name doesn't include directory paths
 String getObjectFilePath() {
   final architecture = ffi.sizeOf<ffi.IntPtr>() == 4 ? '32' : '64';
   String os, extension;
@@ -16,12 +20,12 @@ String getObjectFilePath() {
     os = 'win';
     extension = 'dll';
   } else {
-    throw Exception('Unsupported platform!');
+    throw 'Unsupported platform!';
   }
 
   final result = os + architecture;
   if (!supported.contains(result)) {
-    throw Exception('Unsupported platform: $result!');
+    throw 'Unsupported platform: $result!';
   }
 
   return 'executor_$result.$extension';

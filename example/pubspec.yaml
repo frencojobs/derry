@@ -8,9 +8,4 @@ dev_dependencies:
   derry:
     path: ../
 
-scripts:
-  version: dart --version
-  ping: ping google.com
-  test:
-    - echo test
-    - echo done
+scripts: scripts.yaml

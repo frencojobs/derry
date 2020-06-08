@@ -3,7 +3,19 @@ part of derry;
 /// load scripts from pubspec yaml content
 Future<YamlMap> loadDefinitions() async {
   final pubspec = await readPubspec();
-  final YamlMap definitions = pubspec.contents.value['scripts'];
+  final definitions = pubspec.contents.value['scripts'];
 
-  return definitions;
+  if (definitions is YamlMap) {
+    return definitions;
+  } else if (definitions is String) {
+    final fileScripts = await readYamlFile(definitions.toString());
+
+    if (fileScripts.contents.value is YamlMap) {
+      return fileScripts.contents.value;
+    } else {
+      throw 'Unsupported scripts format';
+    }
+  } else {
+    throw 'Unsupported scripts format';
+  }
 }

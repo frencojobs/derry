@@ -12,6 +12,13 @@ class RunCommmand extends Command {
   @override
   Future<void> run() async {
     final arguments = super.argResults.arguments;
+    final scriptArguments = [];
+
+    if (arguments.contains('--')) {
+      final index = arguments.indexOf('--');
+      scriptArguments.addAll(arguments.sublist(index + 1));
+    }
+
     if (arguments.isEmpty) {
       print(super.usage);
     } else {
@@ -27,7 +34,7 @@ class RunCommmand extends Command {
       if (script == null) {
         throw 'Script not found';
       }
-      executor(script);
+      executor('$script ${scriptArguments.join(' ')}');
     }
   }
 }

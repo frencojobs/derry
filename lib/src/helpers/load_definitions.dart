@@ -5,6 +5,10 @@ Future<YamlMap> loadDefinitions() async {
   final pubspec = await readPubspec();
   final definitions = pubspec.contents.value['scripts'];
 
+  if (definitions == null) {
+    throw 'Unable to locate scripts';
+  }
+
   if (definitions is YamlMap) {
     return definitions;
   } else if (definitions is String) {

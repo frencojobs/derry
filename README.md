@@ -51,7 +51,7 @@ scripts:
 ```bash
 derry run build
 # or even with additional arguments
-derry run build --delete-conflicting-outputs
+derry run build -- --delete-conflicting-outputs
 ```
 
 ## Configuration

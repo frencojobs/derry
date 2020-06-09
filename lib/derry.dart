@@ -2,6 +2,7 @@ library derry;
 
 import 'dart:io';
 import 'package:yaml/yaml.dart';
+import 'package:equatable/equatable.dart';
 import 'package:args/command_runner.dart';
 import 'package:derry/src/ffi/ffi.dart' show executor;
 

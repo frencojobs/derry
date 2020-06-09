@@ -2,7 +2,7 @@ import 'dart:cli' as cli;
 import 'dart:ffi' as ffi;
 import 'dart:isolate' show Isolate;
 import 'package:ffi/ffi.dart';
-import 'package:derry/src/ffi/get_object_file_path.dart';
+import 'package:derry/src/ffi/get_object.dart';
 
 typedef executor_fn = ffi.Void Function(ffi.Pointer<Utf8>);
 typedef Executor = void Function(ffi.Pointer<Utf8>);
@@ -12,7 +12,7 @@ void executor(String input) {
   final blobs = cli
       .waitFor(Isolate.resolvePackageUri(Uri.parse(rootLibrary)))
       .resolve('src/blobs/');
-  final objectFile = blobs.resolve(getObjectFilePath()).toFilePath();
+  final objectFile = blobs.resolve(getObject()).toFilePath();
   final dylib = ffi.DynamicLibrary.open(objectFile);
 
   final executorPointer =

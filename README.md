@@ -93,6 +93,10 @@ This will be the same as using `&&` but it saved the user from having very long 
 
 Honestly, I needed it. It was easy to make, though I had a hard time implementing the script execution. Since Dart's `Process` isn't good at executing system commands, I used Rust with the help of _Foreign Function Interfaces_. For execution, currently `cmd` is used for Windows and `bash` is used for Linux and Mac. I know that's not optimal and I'm still looking for a way to allow users to use the current shell for executions.
 
+## Currently Supported Platforms
+
+64bit Linux, Windows, and Mac are currently supported.
+
 ## License
 
 MIT &copy; Frenco Jobs

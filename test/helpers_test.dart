@@ -13,7 +13,7 @@ void main() {
     test('load_info should return proper results', () async {
       expect(
         await loadInfo(),
-        equals(Info(name: 'derry', version: '0.0.1')),
+        equals(Info(name: 'derry', version: '0.0.2')),
       );
     });
 

@@ -13,10 +13,7 @@ void main() {
     test('load_info should return proper results', () async {
       expect(
         await loadInfo(),
-        {
-          'name': 'derry',
-          'version': '0.0.1',
-        },
+        equals(Info(name: 'derry', version: '0.0.2')),
       );
     });
 
@@ -52,6 +49,18 @@ void main() {
       expect(
         () => toList(null),
         throwsA('Uanble to cast input to list'),
+      );
+    });
+
+    test('sub_command should parse correctly', () {
+      expect(
+        subcommand('\$prep'),
+        equals('prep'),
+      );
+
+      expect(
+        subcommand('\\\$prep'),
+        equals(''),
       );
     });
   });

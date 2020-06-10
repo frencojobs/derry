@@ -89,6 +89,19 @@ build:
 
 This will be the same as using `&&` but it saved the user from having very long lines of scripts.
 
+When defining scripts, the user can also define **subcommands**. Subcommands are references to commands/scripts that won't be executed with a separate derry process. For example,
+
+```yaml
+test:
+  - pub run test
+  - echo "test completed"
+build:
+  - $test # instead of using derry run test
+  - flutter build
+```
+
+`derry run test` will spawn a new derry process to execute, while subcommands are not, reducing the time took to run dart code, and spawn that process.
+
 ## Why & How
 
 Honestly, I needed it. It was easy to make, though I had a hard time implementing the script execution. Since Dart's `Process` isn't good at executing system commands, I used Rust with the help of _Foreign Function Interfaces_. For execution, currently `cmd` is used for Windows and `bash` is used for Linux and Mac. I know that's not optimal and I'm still looking for a way to allow users to use the current shell for executions.

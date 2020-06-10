@@ -1,11 +1,24 @@
-version: dart --version
-ping: ping google.com && echo ok
+version: dart --version # example that stderr is also shown
+ping: ping google.com && echo ok # example that stdout is served with steram
+# example for list commands
 test:
   - echo test
   - echo done
-once:
+# example for advanved configurations
+run_once:
   execution: once
   scripts:
     - echo test
     - exit
     - echo "this wont be called"
+# example for subcommands
+prep:
+  - echo step 1
+  - echo step 2
+  - $test
+run:
+  - $prep
+  - echo flutter run
+build:
+  - \$prep # should not work
+  - echo flutter build

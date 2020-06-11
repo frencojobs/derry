@@ -9,9 +9,20 @@ class RunCommmand extends Command {
   String get description =>
       'Find the script definition from pubspec.yaml and execute it.';
 
+  RunCommmand() {
+    super.argParser.addFlag(
+          'silent',
+          help: 'Determine whether to show outputs or not',
+          defaultsTo: false,
+          negatable: false,
+        );
+  }
+
   @override
   Future<void> run() async {
     final args = super.argResults.arguments;
+    final silent = super.argResults['silent'];
+
     if (args.isEmpty) {
       print(super.usage);
     } else {
@@ -29,7 +40,7 @@ class RunCommmand extends Command {
       }
 
       print(infoLine);
-      execute(definitions, arg, extra);
+      execute(definitions, arg, extra: extra, silent: silent);
     }
   }
 }

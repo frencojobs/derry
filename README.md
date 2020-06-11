@@ -25,7 +25,7 @@ and run
 derry run build
 ```
 
-<br/>
+<br>
 
 ## Installation
 
@@ -41,7 +41,7 @@ Then use derry to run a command from the current dart/flutter project.
 derry run [script]
 ```
 
-<br/>
+<br>
 
 ## Usage
 
@@ -60,7 +60,7 @@ derry run build --silent
 derry run build -- --delete-conflicting-outputs
 ```
 
-<br/>
+<br>
 
 ## API Documentation
 
@@ -118,19 +118,19 @@ build:
 
 `derry run test` will spawn a new derry process to execute, while subcommands are not, reducing the time took to run dart code, and spawn that process.
 
-<br/>
+<br>
 
 ## Why & How
 
 Honestly, I needed it. It was easy to make, though I had a hard time implementing the script execution. Since Dart's `Process` isn't good at executing system commands, I used Rust with the help of _Foreign Function Interfaces_. For execution, currently `cmd` is used for Windows and `bash` is used for Linux and Mac. I know that's not optimal and I'm still looking for a way to allow users to use the current shell for executions.
 
-<br/>
+<br>
 
 ## Currently Supported Platforms
 
 64bit Linux, Windows, and Mac are currently supported.
 
-<br/>
+<br>
 
 ## License
 

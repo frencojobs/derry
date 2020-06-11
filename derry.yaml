@@ -1,0 +1,14 @@
+build:
+  - cargo build --release
+
+build_win64:
+  - $build
+  - COPY target\release\executor.dll lib\src\blobs\executor_win64.dll
+
+build_linux64:
+  - $build
+  - cp target/release/executor.so lib/src/blobs/executor_linux64.so
+
+build_mac64:
+  - $build
+  - cp target/release/executor.dylib lib/src/blobs/executor_mac64.dylib

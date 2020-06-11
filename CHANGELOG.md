@@ -9,3 +9,10 @@
 # 0.0.2
 
 - Added support for subcommands
+
+# 0.0.3
+
+- Added support for `--silent`
+- Refactored Rust source code
+- Started using derry for build
+- Modified documentation

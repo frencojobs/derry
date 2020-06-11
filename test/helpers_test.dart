@@ -1,12 +1,17 @@
+import 'dart:io';
+
 import 'package:test/test.dart';
 import 'package:derry/derry.dart';
+import 'package:yaml/yaml.dart' show loadYamlDocument;
 
 void main() {
   group('Are helpers working? Because ', () {
-    test('load_definitions should fail without scripts', () {
+    test('load_definitions should return correct scripts', () async {
       expect(
-        () async => await loadDefinitions(),
-        throwsA(equals('Unable to locate scripts')),
+        await loadDefinitions(),
+        loadYamlDocument(await File('derry.yaml').readAsString())
+            .contents
+            .value,
       );
     });
 

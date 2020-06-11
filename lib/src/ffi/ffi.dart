@@ -4,10 +4,10 @@ import 'dart:isolate' show Isolate;
 import 'package:ffi/ffi.dart';
 import 'package:derry/src/ffi/get_object.dart';
 
-typedef executor_fn = ffi.Void Function(ffi.Pointer<Utf8>);
-typedef Executor = void Function(ffi.Pointer<Utf8>);
+typedef executor_fn = ffi.Void Function(ffi.Pointer<Utf8>, ffi.Int32);
+typedef Executor = void Function(ffi.Pointer<Utf8>, int);
 
-void executor(String input) {
+void executor(String input, bool silent) {
   final rootLibrary = 'package:derry/derry.dart';
   final blobs = cli
       .waitFor(Isolate.resolvePackageUri(Uri.parse(rootLibrary)))
@@ -20,5 +20,5 @@ void executor(String input) {
   final executorFunction = executorPointer.asFunction<Executor>();
 
   final script = Utf8.toUtf8(input).cast<Utf8>();
-  executorFunction(script);
+  executorFunction(script, silent ? 1 : 0);
 }

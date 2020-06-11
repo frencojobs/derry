@@ -16,3 +16,7 @@
 - Refactored Rust source code
 - Started using derry for build
 - Modified documentation
+
+# 0.0.3+1
+
+- Modified README to work correctly on pub.dev

@@ -20,3 +20,8 @@
 # 0.0.3+1
 
 - Modified README to work correctly on pub.dev
+
+# 0.0.4
+
+- Added support for `test` and `build` aliases
+- Better and consistent error messages with an API

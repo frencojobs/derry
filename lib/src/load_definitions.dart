@@ -6,7 +6,7 @@ Future<Map> loadDefinitions() async {
   final definitions = pubspec.contents.value['scripts'];
 
   if (definitions == null) {
-    throw 'Unable to locate scripts';
+    throw Error(type: ErrorType.DNF);
   }
 
   if (definitions is YamlMap) {
@@ -17,9 +17,9 @@ Future<Map> loadDefinitions() async {
     if (fileScripts.contents.value is Map) {
       return fileScripts.contents.value;
     } else {
-      throw 'Unsupported scripts format';
+      throw Error(type: ErrorType.CPD);
     }
   } else {
-    throw 'Unsupported scripts format';
+    throw Error(type: ErrorType.CPD);
   }
 }

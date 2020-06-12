@@ -18,7 +18,7 @@ void main() {
     test('load_info should return proper results', () async {
       expect(
         await loadInfo(),
-        equals(Info(name: 'derry', version: '0.0.3+1')),
+        equals(Info(name: 'derry', version: '0.0.4')),
       );
     });
 
@@ -39,21 +39,39 @@ void main() {
     test('read_yaml_file should fail when there\'s not a file', () {
       expect(
         () async => await readYamlFile('yaml'),
-        throwsA(equals('File not found at yaml')),
+        throwsA(
+          equals(
+            Error(
+              type: ErrorType.FNF,
+              body: {'path': 'yaml'},
+            ),
+          ),
+        ),
       );
     });
 
     test('read_yaml_file should fail when the file is not in yaml format', () {
       expect(
         () async => await readYamlFile('README.md'),
-        throwsA(equals('YAML File can\'t be parsed')),
+        throwsA(
+          equals(
+            Error(type: ErrorType.CPY),
+          ),
+        ),
       );
     });
 
     test('to_list should throw an error on incorrect type', () {
       expect(
         () => toList(null),
-        throwsA('Uanble to cast input to list'),
+        throwsA(
+          equals(
+            Error(
+              type: ErrorType.CCT,
+              body: {'from': Null, 'to': 'List<String>'},
+            ),
+          ),
+        ),
       );
     });
 

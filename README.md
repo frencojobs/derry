@@ -64,17 +64,26 @@ derry run build -- --delete-conflicting-outputs
 
 ## API Documentation
 
+**Use aliases**
+
+Most used scripts are defined as aliases that you can use with a shorter derry command. Options available with `derry run` command will also be available with these aliases. No other functionalities are added to these aliases, they are just extensions of `derry run` command.
+
+```bash
+derry build # instead of derry run build
+derry test # instead of derry run test
+```
+
 **Use definition file**
 
 Scripts can be configured just inside the `pubspec.yaml` file or within a separate file. When using a separate file to configure scripts, pass the file name as the value of the `scripts` node in the `pubspec.yaml` file.
 
 ```yaml
 # pubspec.yaml
-scripts: scripts.yaml
+scripts: derry.yaml
 ```
 
 ```yaml
-# scripts.yaml
+# derry.yaml
 build: pub run build_runner build
 ```
 

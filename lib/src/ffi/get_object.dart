@@ -1,5 +1,4 @@
-import 'dart:ffi' as ffi;
-import 'dart:io' show Platform;
+part of derry;
 
 // took this piece of code from dart/tflite_native
 /// supported operating systems with architectures
@@ -20,12 +19,18 @@ String getObject() {
     os = 'win';
     extension = 'dll';
   } else {
-    throw 'Unsupported platform!';
+    throw Error(
+      type: ErrorType.PNS,
+      body: {'os': Platform.operatingSystem},
+    );
   }
 
   final result = os + architecture;
   if (!supported.contains(result)) {
-    throw 'Unsupported platform: $result!';
+    throw Error(
+      type: ErrorType.PNS,
+      body: {'architecture': result},
+    );
   }
 
   return 'executor_$result.$extension';

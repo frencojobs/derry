@@ -6,6 +6,12 @@ List<String> toList(dynamic input) {
   } else if (input is String) {
     return [input.toString()];
   } else {
-    throw 'Uanble to cast input to list';
+    throw Error(
+      type: ErrorType.CCT,
+      body: {
+        'from': input.runtimeType,
+        'to': 'List<String>',
+      },
+    );
   }
 }

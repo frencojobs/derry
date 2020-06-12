@@ -1,3 +1,9 @@
+test: pub run test
+
+publish:
+  - $test
+  - pub publish --dry-run
+
 build:
   - cargo build --release
 

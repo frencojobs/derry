@@ -5,13 +5,19 @@ void execute(
   String arg, {
   String extra = '',
   bool silent = false,
+  String infoLine,
 }) {
   final definition =
       definitions.containsKey(arg) ? parseDefinitions(definitions[arg]) : null;
 
   if (definition == null) {
-    throw 'Script not found';
+    throw Error(
+      type: ErrorType.SNF,
+      body: {'script': arg},
+    );
   }
+
+  infoLine ?? print(infoLine);
   switch (definition.execution) {
     case 'once':
       final script = definition.scripts.join(' && ');
@@ -30,7 +36,7 @@ void execute(
       }
       break;
     default:
-      throw 'Incorrect execution type ${definition.execution}';
+      throw 'Incorrect execution type ${definition.execution}.';
       break;
   }
 }

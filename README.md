@@ -23,6 +23,8 @@ and run
 
 ```bash
 derry run build
+# or by alias
+derry build
 ```
 
 <br>

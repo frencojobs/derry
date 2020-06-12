@@ -6,13 +6,16 @@ Future<YamlDocument> readYamlFile(String filePath) async {
   YamlDocument document;
 
   if (!await file.exists()) {
-    throw 'File not found at $filePath';
+    throw Error(
+      type: ErrorType.FNF,
+      body: {'path': filePath},
+    );
   }
 
   try {
     document = loadYamlDocument(await file.readAsString());
   } catch (e) {
-    throw 'YAML File can\'t be parsed';
+    throw Error(type: ErrorType.CPY);
   }
 
   return document;

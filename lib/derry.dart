@@ -1,18 +1,31 @@
 library derry;
 
 import 'dart:io';
+import 'dart:cli' as cli;
+import 'dart:ffi' as ffi;
+import 'dart:isolate' show Isolate;
+import 'package:ffi/ffi.dart';
 import 'package:yaml/yaml.dart';
-import 'package:equatable/equatable.dart';
+import 'package:console/console.dart';
 import 'package:args/command_runner.dart';
-import 'package:derry/src/ffi/ffi.dart' show executor;
+import 'package:equatable/equatable.dart';
 
 part 'src/execute.dart';
 part 'src/load_info.dart';
 part 'src/load_definitions.dart';
 
+part 'src/ffi/ffi.dart';
+part 'src/ffi/get_object.dart';
+
+part 'src/error/handler.dart';
+part 'src/error/error_type.dart';
+
 part 'src/commands/run.dart';
+part 'src/commands/test.dart';
+part 'src/commands/build.dart';
 
 part 'src/models/info.dart';
+part 'src/models/error.dart';
 part 'src/models/definition.dart';
 
 part 'src/helpers/to_list.dart';

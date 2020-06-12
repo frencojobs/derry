@@ -1,3 +1,5 @@
+test: pub run test
+
 build:
   - cargo build --release
 

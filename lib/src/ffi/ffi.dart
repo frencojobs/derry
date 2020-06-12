@@ -1,8 +1,4 @@
-import 'dart:cli' as cli;
-import 'dart:ffi' as ffi;
-import 'dart:isolate' show Isolate;
-import 'package:ffi/ffi.dart';
-import 'package:derry/src/ffi/get_object.dart';
+part of derry;
 
 typedef executor_fn = ffi.Void Function(ffi.Pointer<Utf8>, ffi.Int32);
 typedef Executor = void Function(ffi.Pointer<Utf8>, int);

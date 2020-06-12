@@ -9,4 +9,4 @@ dev_dependencies:
   derry:
     path: ../
 
-scripts: scripts.yaml
+scripts: derry.yaml

@@ -1,5 +1,3 @@
-🎈
-
 # Derry
 
 Derry is a script manager for Dart.

@@ -55,11 +55,11 @@ scripts:
 ```
 
 ```bash
-derry run build
+derry build
 # or use `silent` option to hide outputs
-derry run build --silent
+derry build --silent
 # or even with additional arguments
-derry run build -- --delete-conflicting-outputs
+derry build -- --delete-conflicting-outputs
 ```
 
 <br>
@@ -123,11 +123,19 @@ test:
   - pub run test
   - echo "test completed"
 build:
-  - $test # instead of using derry run test
+  - $test # instead of using derry test
   - flutter build
 ```
 
-`derry run test` will spawn a new derry process to execute, while subcommands are not, reducing the time took to run dart code, and spawn that process.
+`derry test` will spawn a new derry process to execute, while subcommands are not, reducing the time took to run dart code, and spawn that process.
+
+**List available scripts**
+
+Use this command to see what scripts are available in the current configuration.
+
+```bash
+derry ls
+```
 
 <br>
 

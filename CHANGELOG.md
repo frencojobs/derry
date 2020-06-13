@@ -25,3 +25,8 @@
 
 - Added support for `test` and `build` aliases
 - Better and consistent error messages with an API
+
+# 0.0.5
+
+- Added `derry ls` command
+- Updated documentation

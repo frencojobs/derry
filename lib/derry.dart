@@ -10,6 +10,7 @@ import 'package:console/console.dart';
 import 'package:args/command_runner.dart';
 import 'package:equatable/equatable.dart';
 
+part 'src/config.dart';
 part 'src/execute.dart';
 part 'src/load_info.dart';
 part 'src/load_definitions.dart';
@@ -20,6 +21,7 @@ part 'src/ffi/get_object.dart';
 part 'src/error/handler.dart';
 part 'src/error/error_type.dart';
 
+part 'src/commands/ls.dart';
 part 'src/commands/run.dart';
 part 'src/commands/test.dart';
 part 'src/commands/build.dart';

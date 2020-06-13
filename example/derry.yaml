@@ -18,6 +18,7 @@ prep:
   - $test
 run:
   - $prep
+  - $build
   - echo flutter run
 build:
   - \$prep # should not work

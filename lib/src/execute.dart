@@ -13,11 +13,14 @@ void execute(
   if (definition == null) {
     throw Error(
       type: ErrorType.SNF,
-      body: {'script': arg},
+      body: {
+        'script': arg,
+        'definitions': definitions.keys.toList(),
+      },
     );
   }
 
-  infoLine ?? print(infoLine);
+  if (infoLine != null) print(infoLine);
   switch (definition.execution) {
     case 'once':
       final script = definition.scripts.join(' && ');

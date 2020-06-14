@@ -12,7 +12,9 @@ void main(List<String> arguments) async {
 
   try {
     await runner.run(arguments);
-  } catch (error) {
+  } on Error catch (error) {
     errorHandler(error);
+  } catch (error) {
+    print(error);
   }
 }

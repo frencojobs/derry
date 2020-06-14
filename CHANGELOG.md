@@ -30,3 +30,9 @@
 
 - Added `derry ls` command
 - Updated documentation
+
+# 0.0.6
+
+- Added `Did you mean this?` check by using `string-similarity` package
+- Fixed null infoLine error
+- Fixed command not found unhandled exceptions

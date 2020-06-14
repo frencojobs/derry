@@ -9,6 +9,7 @@ import 'package:yaml/yaml.dart';
 import 'package:console/console.dart';
 import 'package:args/command_runner.dart';
 import 'package:equatable/equatable.dart';
+import 'package:string_similarity/string_similarity.dart';
 
 part 'src/config.dart';
 part 'src/execute.dart';

@@ -8,8 +8,7 @@ void errorHandler(Error t) {
   switch (t.type) {
     case ErrorType.SNF:
       final String mainScript = t.body['script'];
-      final definitions =
-          (t.body['definitions'] as List).map((v) => v.toString()).toList();
+      final definitions = t.body['definitions'] as List<String>;
 
       print('$prefixer Unable to find script named "$mainScript".');
       print('');

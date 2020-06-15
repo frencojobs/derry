@@ -32,7 +32,9 @@ part 'src/models/error.dart';
 part 'src/models/definition.dart';
 
 part 'src/helpers/to_list.dart';
+part 'src/helpers/make_keys.dart';
 part 'src/helpers/subcommand.dart';
+part 'src/helpers/deep_search.dart';
 part 'src/helpers/read_pubspec.dart';
 part 'src/helpers/read_yaml_file.dart';
-part 'src/helpers/parse_defnintions.dart';
+part 'src/helpers/parse_defnintion.dart';

@@ -29,7 +29,7 @@ class RunCommmand extends Command {
       print(super.usage);
     } else {
       final arg =
-          alias ? name : args.first; // only the first argument will be used
+          alias ? '$name ${args.join(' ')}'.trim() : args.join(' ').trim();
       final extra = args.contains('--') // additional arguments
           ? args.sublist(args.indexOf('--') + 1).join(' ')
           : '';

@@ -24,7 +24,7 @@ void main() {
 
     test('parse_definition should return expected outputs', () {
       expect(
-        parseDefinitions('echo 0'),
+        parseDefinition('echo 0'),
         equals(Definition(execution: 'multiple', scripts: ['echo 0'])),
       );
     });
@@ -86,5 +86,24 @@ void main() {
         equals(''),
       );
     });
+  });
+
+  test('deep_search should work as expected', () {
+    expect(
+      search({
+        'foo': {'bar': 'baz'}
+      }, 'foo bar'),
+      equals('baz'),
+    );
+  });
+
+  test('make_keys should also work as expected', () {
+    expect(
+      makeKeys({
+        'foo': {'bar': 'baz'},
+        'far': 'feb'
+      }),
+      equals(['foo bar', 'far']),
+    );
   });
 }

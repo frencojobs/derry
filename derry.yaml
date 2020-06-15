@@ -4,17 +4,15 @@ publish:
   - $test
   - pub publish --dry-run
 
+cargo_build: cargo build --release
+
 build:
-  - cargo build --release
-
-build_win64:
-  - $build
-  - COPY target\release\executor.dll lib\src\blobs\executor_win64.dll
-
-build_linux64:
-  - $build
-  - cp target/release/libexecutor.so lib/src/blobs/executor_linux64.so
-
-build_mac64:
-  - $build
-  - cp target/release/libexecutor.dylib lib/src/blobs/executor_mac64.dylib
+  win64:
+    - $cargo_build
+    - COPY target\release\executor.dll lib\src\blobs\executor_win64.dll
+  mac64:
+    - $cargo_build
+    - cp target/release/libexecutor.dylib lib/src/blobs/executor_mac64.dylib
+  linux64:
+    - $cargo_build
+    - cp target/release/libexecutor.so lib/src/blobs/executor_linux64.so

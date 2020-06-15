@@ -16,8 +16,11 @@ class ListCommand extends Command {
     final definitions = await loadDefinitions();
 
     final mapping = Map.fromEntries(
-      definitions.entries
-          .map((entry) => MapEntry(entry.key, parseDefinitions(entry.value)))
+      makeKeys(definitions)
+          .asMap()
+          .entries
+          .map((entry) => MapEntry(
+              entry.key, parseDefinition(search(definitions, entry.value))))
           .map(
             (entry) => MapEntry(
               entry.key,
@@ -28,12 +31,12 @@ class ListCommand extends Command {
 
     print(infoLine);
     print('│');
-    for (final entry in mapping.keys.toList().asMap().entries) {
+    for (final entry in makeKeys(definitions).asMap().entries) {
       final i = entry.key;
       final value = formatAlias(entry.value);
-      final subcommands = mapping[entry.value];
+      final subcommands = mapping[entry.key];
 
-      print('${getPrefix(i, mapping.length)} $value');
+      print('${getPrefix(i, makeKeys(definitions).length)} $value');
 
       for (final subEntry in subcommands.asMap().entries) {
         final j = subEntry.key;

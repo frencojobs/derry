@@ -36,3 +36,9 @@
 - Added `Did you mean this?` check by using `string-similarity` package
 - Fixed null infoLine error
 - Fixed command not found unhandled exceptions
+
+# 0.0.7
+
+- Added support for nested scripts
+- Modified `Did you mean this?` check and `ls` commands to work well with nested scripts
+- Breaking changes on `Advanced Configuration` API for compatibility with nested scripts

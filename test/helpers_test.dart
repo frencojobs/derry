@@ -18,13 +18,13 @@ void main() {
     test('load_info should return proper results', () async {
       expect(
         await loadInfo(),
-        equals(Info(name: 'derry', version: '0.0.6')),
+        equals(Info(name: 'derry', version: '0.0.7')),
       );
     });
 
     test('parse_definition should return expected outputs', () {
       expect(
-        parseDefinitions('echo 0'),
+        parseDefinition('echo 0'),
         equals(Definition(execution: 'multiple', scripts: ['echo 0'])),
       );
     });
@@ -86,5 +86,24 @@ void main() {
         equals(''),
       );
     });
+  });
+
+  test('deep_search should work as expected', () {
+    expect(
+      search({
+        'foo': {'bar': 'baz'}
+      }, 'foo bar'),
+      equals('baz'),
+    );
+  });
+
+  test('make_keys should also work as expected', () {
+    expect(
+      makeKeys({
+        'foo': {'bar': 'baz'},
+        'far': 'feb'
+      }),
+      equals(['foo bar', 'far']),
+    );
   });
 }

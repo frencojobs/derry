@@ -7,18 +7,20 @@ void execute(
   bool silent = false,
   String infoLine,
 }) {
-  final definition =
-      definitions.containsKey(arg) ? parseDefinitions(definitions[arg]) : null;
+  final searchResult = search(definitions, arg);
 
-  if (definition == null) {
+  /// for incomplete calls for nested scripts
+  if (searchResult is YamlMap && !searchResult.value.containsKey('(scripts)')) {
     throw Error(
       type: ErrorType.SNF,
       body: {
         'script': arg,
-        'definitions': definitions.keys.toList(),
+        'definitions': makeKeys(definitions),
       },
     );
   }
+
+  final definition = parseDefinition(searchResult);
 
   if (infoLine != null) print(infoLine);
   switch (definition.execution) {

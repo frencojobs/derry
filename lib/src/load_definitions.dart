@@ -14,7 +14,7 @@ Future<Map> loadDefinitions() async {
   } else if (definitions is String) {
     final fileScripts = await readYamlFile(definitions.toString());
 
-    if (fileScripts.contents.value is Map) {
+    if (fileScripts.contents.value is YamlMap) {
       return fileScripts.contents.value;
     } else {
       throw Error(type: ErrorType.CPD);

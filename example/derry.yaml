@@ -6,8 +6,8 @@ list:
   - echo done
 # example for advanved configurations
 run_once:
-  execution: once
-  scripts:
+  (execution): once
+  (scripts):
     - echo test
     - exit
     - echo "this wont be called"
@@ -15,14 +15,12 @@ run_once:
 prep:
   - echo step 1
   - echo step 2
-  - $test
-run:
+test: # call with derry test
   - $prep
-  - $build
-  - echo flutter run
-build:
+  - echo pub run test
+build: # call with derry build
   - \$prep # should not work
   - echo flutter build
-
-start: echo start # call with derry start
-test: echo test # call with derry test
+nested: # example for nested scripts
+  foo:
+    - echo bar

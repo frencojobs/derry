@@ -21,3 +21,6 @@ test: # call with derry test
 build: # call with derry build
   - \$prep # should not work
   - echo flutter build
+nested: # example for nested scripts
+  foo:
+    - echo bar

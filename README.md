@@ -66,30 +66,6 @@ derry build -- --delete-conflicting-outputs
 
 ## API Documentation
 
-**Nested scripts**
-
-Scripts can be nested as the user needed. For example, you can use them to use different implementations of the build script based on operating system.
-
-```yaml
-# derry.yaml
-build:
-  windows:
-    - echo 0 # do something
-  mac:
-    - echo 1 # do something else
-```
-
-And you can use them by calling `derry build windows` on windows and `derry run mac` on macOS.
-
-**Use aliases**
-
-Most used scripts are defined as aliases that you can use with a shorter derry command. Options available with `derry run` command will also be available with these aliases. No other functionalities are added to these aliases, they are just extensions of `derry run` command.
-
-```bash
-derry build # instead of derry run build
-derry test # instead of derry run test
-```
-
 **Use definition file**
 
 Scripts can be configured just inside the `pubspec.yaml` file or within a separate file. When using a separate file to configure scripts, pass the file name as the value of the `scripts` node in the `pubspec.yaml` file.
@@ -114,6 +90,30 @@ build:
   - echo "test completed"
   - pub run build_runner build
 ```
+
+**Use aliases**
+
+Most used scripts are defined as aliases that you can use with a shorter derry command. Options available with `derry run` command will also be available with these aliases. No other functionalities are added to these aliases, they are just extensions of `derry run` command.
+
+```bash
+derry build # instead of derry run build
+derry test # instead of derry run test
+```
+
+**Nested scripts**
+
+Scripts can be nested as the user needed. For example, you can use them to use different implementations of the build script based on operating system.
+
+```yaml
+# derry.yaml
+build:
+  windows:
+    - echo 0 # do something
+  mac:
+    - echo 1 # do something else
+```
+
+And you can use them by calling `derry build windows` on windows and `derry build mac` on macOS.
 
 **Configure execution type**
 

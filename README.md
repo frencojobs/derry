@@ -1,4 +1,5 @@
 # Derry
+![Pub Version](https://img.shields.io/pub/v/derry?color=ea728c&label=pub.dev&style=flat-square)
 
 Derry is a script manager for Dart.
 

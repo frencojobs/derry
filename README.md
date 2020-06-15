@@ -66,6 +66,21 @@ derry build -- --delete-conflicting-outputs
 
 ## API Documentation
 
+**Nested scripts**
+
+Scripts can be nested as the user needed. For example, you can use them to use different implementations of the build script based on operating system.
+
+```yaml
+# derry.yaml
+build:
+  windows:
+    - echo 0 # do something
+  mac:
+    - echo 1 # do something else
+```
+
+And you can use them by calling `derry build windows` on windows and `derry run mac` on macOS.
+
 **Use aliases**
 
 Most used scripts are defined as aliases that you can use with a shorter derry command. Options available with `derry run` command will also be available with these aliases. No other functionalities are added to these aliases, they are just extensions of `derry run` command.
@@ -102,12 +117,12 @@ build:
 
 **Configure execution type**
 
-Note that in the list of scripts, executions will happen in separate processes, use `&&` to execute multiple scripts in the same process. Alternatively, you can also configure the `execution` value.
+Note that in the list of scripts, executions will happen in separate processes, use `&&` to execute multiple scripts in the same process. Alternatively, you can also configure the `execution` value. To separate the configuration values from nested scripts, wrap the keys of the configurations with parenthesis as in `(execution)`.
 
 ```yaml
 build:
-  execution: once # multiple by default
-  scripts:
+  (execution): once # multiple by default
+  (scripts):
     - cat generated.txt
     - pub run build_runner build # won't be called if generated.txt does not exist
 ```

@@ -20,9 +20,28 @@ class RunCommmand extends Command {
         );
   }
 
+  Map<String, dynamic> parseExtras(List<String> args) {
+    final flag = args.contains('--');
+
+    if (flag) {
+      final start = args.indexOf('--');
+      return <String, List>{
+        'args': args.sublist(0, start).toList(),
+        'extra': args.sublist(start + 1).toList(),
+      };
+    } else {
+      return <String, List>{
+        'args': args,
+        'extra': [],
+      };
+    }
+  }
+
   @override
   Future<void> run() async {
-    final args = super.argResults.arguments;
+    final parsed = parseExtras(super.argResults.arguments);
+    final args = super.argParser.parse(parsed['args']).rest;
+    final extra = parsed['extra'].join(' ');
     final silent = super.argResults['silent'];
 
     if (args.isEmpty && !alias) {
@@ -30,9 +49,6 @@ class RunCommmand extends Command {
     } else {
       final arg =
           alias ? '$name ${args.join(' ')}'.trim() : args.join(' ').trim();
-      final extra = args.contains('--') // additional arguments
-          ? args.sublist(args.indexOf('--') + 1).join(' ')
-          : '';
 
       final info = await loadInfo();
       final definitions = await loadDefinitions();

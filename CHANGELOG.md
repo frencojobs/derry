@@ -42,3 +42,7 @@
 - Added support for nested scripts
 - Modified `Did you mean this?` check and `ls` commands to work well with nested scripts
 - Breaking changes on `Advanced Configuration` API for compatibility with nested scripts
+
+# 0.0.7+1
+
+- Fixed #14 error on not being able to use options caused by previous changes

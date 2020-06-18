@@ -24,3 +24,4 @@ build: # call with derry build
 nested: # example for nested scripts
   foo:
     - echo bar
+watch: pub run build_runner watch

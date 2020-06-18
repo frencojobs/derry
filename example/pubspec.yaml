@@ -8,5 +8,6 @@ environment:
 dev_dependencies:
   derry:
     path: ../
+  build_runner: ^1.10.0
 
 scripts: derry.yaml

@@ -46,3 +46,8 @@
 # 0.0.7+1
 
 - Fixed #14 error on not being able to use options caused by previous changes
+
+# 0.0.8
+
+- Fixed #12 Ctrl-C Error
+- Added `-s` as abbrreviation for `--silent`

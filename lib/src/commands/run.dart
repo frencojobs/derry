@@ -14,6 +14,7 @@ class RunCommmand extends Command {
   RunCommmand() {
     super.argParser.addFlag(
           'silent',
+          abbr: 's',
           help: 'Determine whether to show outputs or not.',
           defaultsTo: false,
           negatable: false,

@@ -42,9 +42,9 @@ fn executor_fn(script: &String, silent: bool) {
         child_arc_clone
             .kill()
             .expect("Rust: Couldn't kill the process!");
-        println!("");
-    })
-    .expect("Rust: Error setting interrupt handler!");
+        println!();
+    });
+    // .expect("Rust: Error setting interrupt handler!");
 
     if silent {
         child.output().expect("Rust: Unable to get process output");

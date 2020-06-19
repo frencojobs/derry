@@ -51,3 +51,7 @@
 
 - Fixed #12 Ctrl-C Error
 - Added `-s` as abbrreviation for `--silent`
+
+# 0.0.8+1
+
+- Fixed #20 `MultipleHandlers` Error caused by #12 fix

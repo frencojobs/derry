@@ -1,4 +1,5 @@
 # Derry
+
 ![Pub Version](https://img.shields.io/pub/v/derry?color=ea728c&label=pub.dev&style=flat-square)
 
 Derry is a script manager for Dart.
@@ -140,10 +141,12 @@ test:
   - echo "test completed"
 build:
   - $test # instead of using derry test
+  - $test --ignored # even with arguments
   - flutter build
 ```
 
 `derry test` will spawn a new derry process to execute, while subcommands are not, reducing the time took to run dart code, and spawn that process.
+But note that subcommands will take a whole line of script. For example, you have to give a separate line for a subcommand, you can't use them together with other scripts or sandwiched.
 
 **List available scripts**
 

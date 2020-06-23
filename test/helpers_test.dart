@@ -78,12 +78,26 @@ void main() {
     test('sub_command should parse correctly', () {
       expect(
         subcommand('\$prep'),
-        equals('prep'),
+        equals({
+          'command': 'prep',
+          'extra': '',
+        }),
+      );
+
+      expect(
+        subcommand('\$dart --version'),
+        equals({
+          'command': 'dart',
+          'extra': '--version',
+        }),
       );
 
       expect(
         subcommand('\\\$prep'),
-        equals(''),
+        equals({
+          'command': '',
+          'extra': '',
+        }),
       );
     });
   });

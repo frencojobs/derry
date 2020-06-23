@@ -18,7 +18,7 @@ void main() {
     test('load_info should return proper results', () async {
       expect(
         await loadInfo(),
-        equals(Info(name: 'derry', version: '0.0.8+1')),
+        equals(Info(name: 'derry', version: '0.0.9')),
       );
     });
 
@@ -78,12 +78,26 @@ void main() {
     test('sub_command should parse correctly', () {
       expect(
         subcommand('\$prep'),
-        equals('prep'),
+        equals({
+          'command': 'prep',
+          'extra': '',
+        }),
+      );
+
+      expect(
+        subcommand('\$dart --version'),
+        equals({
+          'command': 'dart',
+          'extra': '--version',
+        }),
       );
 
       expect(
         subcommand('\\\$prep'),
-        equals(''),
+        equals({
+          'command': '',
+          'extra': '',
+        }),
       );
     });
   });

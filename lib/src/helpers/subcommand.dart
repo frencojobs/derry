@@ -1,10 +1,16 @@
 part of derry;
 
-String subcommand(String command) {
+Map<String, String> subcommand(String command) {
   if (command.startsWith('\$')) {
     final sub = command.split(' ').first.substring(1);
-    return sub;
+    return {
+      'command': sub,
+      'extra': command.split(' ').sublist(1).join(' '),
+    };
   } else {
-    return '';
+    return {
+      'command': '',
+      'extra': '',
+    };
   }
 }

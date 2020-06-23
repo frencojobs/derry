@@ -31,8 +31,13 @@ void execute(
     case 'multiple':
       for (final script in definition.scripts) {
         final sub = subcommand(script);
-        if (sub.isNotEmpty) {
-          execute(definitions, sub, extra: extra, silent: silent);
+        if (sub['command'].isNotEmpty) {
+          execute(
+            definitions,
+            sub['command'],
+            extra: sub['extra'],
+            silent: silent,
+          );
         } else {
           // replace all \$ with $ but are not subcommands
           final unparsed = script.replaceAll('\\\$', '\$');

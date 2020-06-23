@@ -1,4 +1,5 @@
-version: dart --version # example that stderr is also shown
+dart: dart
+version: $dart --version
 ping: ping google.com && echo ok # example that stdout is served with stream
 # example for list commands
 list:

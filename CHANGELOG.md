@@ -55,3 +55,7 @@
 # 0.0.8+1
 
 - Fixed #20 `MultipleHandlers` Error caused by #12 fix
+
+# 0.0.9
+
+- Added support for using subcommands with options/arguments/parameters

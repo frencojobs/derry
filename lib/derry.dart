@@ -14,6 +14,7 @@ import 'package:string_similarity/string_similarity.dart';
 part 'src/config.dart';
 part 'src/execute.dart';
 part 'src/load_info.dart';
+part 'src/find_source.dart';
 part 'src/load_definitions.dart';
 
 part 'src/ffi/ffi.dart';
@@ -26,6 +27,7 @@ part 'src/commands/ls.dart';
 part 'src/commands/run.dart';
 part 'src/commands/test.dart';
 part 'src/commands/build.dart';
+part 'src/commands/source.dart';
 
 part 'src/models/info.dart';
 part 'src/models/error.dart';

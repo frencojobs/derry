@@ -59,3 +59,7 @@
 # 0.0.9
 
 - Added support for using subcommands with options/arguments/parameters
+
+# 0.1.0
+
+- Added support for `derry source` command

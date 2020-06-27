@@ -8,7 +8,8 @@ void main(List<String> arguments) async {
     ..addCommand(ListCommand())
     ..addCommand(RunCommmand())
     ..addCommand(TestCommand())
-    ..addCommand(BuildCommand());
+    ..addCommand(BuildCommand())
+    ..addCommand(SourceCommand());
 
   try {
     await runner.run(arguments);

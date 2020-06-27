@@ -156,6 +156,14 @@ Use this command to see what scripts are available in the current configuration.
 derry ls
 ```
 
+**Check the location of the derry scripts**
+
+Use this command to see the location (both absolute and relative) path of the derry script file. You can also use this to check if the scripts are correctly formatted or the location is correct.
+
+```bash
+derry source # --absolute or -a to show absolute path
+```
+
 <br>
 
 ## Why & How

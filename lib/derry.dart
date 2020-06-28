@@ -1,14 +1,24 @@
 library derry;
 
-import 'dart:io';
+import 'dart:ffi'
+    show
+        Int32,
+        Void,
+        IntPtr,
+        sizeOf,
+        Pointer,
+        NativeFunction,
+        DynamicLibrary,
+        NativeFunctionPointer;
 import 'dart:cli' as cli;
-import 'dart:ffi' as ffi;
 import 'dart:isolate' show Isolate;
-import 'package:ffi/ffi.dart';
+import 'dart:io' show Platform, File, Directory;
+
 import 'package:yaml/yaml.dart';
-import 'package:console/console.dart';
-import 'package:args/command_runner.dart';
-import 'package:equatable/equatable.dart';
+import 'package:ffi/ffi.dart' show Utf8;
+import 'package:console/console.dart' show format;
+import 'package:args/command_runner.dart' show Command;
+import 'package:equatable/equatable.dart' show Equatable;
 import 'package:string_similarity/string_similarity.dart';
 
 part 'src/config.dart';
@@ -17,8 +27,8 @@ part 'src/load_info.dart';
 part 'src/find_source.dart';
 part 'src/load_definitions.dart';
 
-part 'src/ffi/ffi.dart';
-part 'src/ffi/get_object.dart';
+part 'src/bindings/executor.dart';
+part 'src/bindings/get_object.dart';
 
 part 'src/error/handler.dart';
 part 'src/error/error_type.dart';

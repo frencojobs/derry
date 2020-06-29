@@ -7,7 +7,7 @@ const Set<String> supported = {'win64', 'linux64', 'mac64'};
 /// get the file name of blob files based on os
 /// file name doesn't include directory paths
 String getObject() {
-  final architecture = ffi.sizeOf<ffi.IntPtr>() == 4 ? '32' : '64';
+  final architecture = sizeOf<IntPtr>() == 4 ? '32' : '64';
   String os, extension;
   if (Platform.isLinux) {
     os = 'linux';

@@ -1,6 +1,6 @@
 name: derry
 description: Derry is a script manager for Dart. It helps you define script shortcuts and use them effortlessly, and performantly as it should be.
-version: 0.1.0
+version: 0.1.1
 homepage: https://github.com/frencojobs/derry
 
 environment:
@@ -20,5 +20,7 @@ dependencies:
 dev_dependencies:
   test: ^1.6.0
   pedantic: ^1.8.0
+  build_runner: ^1.10.0
+  build_version: ^2.0.1
 
 scripts: derry.yaml

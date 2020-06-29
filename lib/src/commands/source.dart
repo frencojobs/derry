@@ -6,13 +6,13 @@ class SourceCommand extends Command {
   String get name => 'source';
 
   @override
-  String get description => 'Find the location of the derry scripts file';
+  String get description => 'find the location of the derry config file';
 
   SourceCommand() {
     super.argParser.addFlag(
           'absolute',
           abbr: 'a',
-          help: 'Determine whether to show absolute paths or not.',
+          help: 'determine whether to show absolute paths or not',
           defaultsTo: false,
           negatable: false,
         );

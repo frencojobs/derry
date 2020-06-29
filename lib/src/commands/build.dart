@@ -8,5 +8,5 @@ class BuildCommand extends RunCommmand {
   String get name => 'build';
 
   @override
-  String get description => 'alias to derry run build.';
+  String get description => 'alias to derry run build';
 }

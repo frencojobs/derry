@@ -8,14 +8,13 @@ class RunCommmand extends Command {
   String get name => 'run';
 
   @override
-  String get description =>
-      'Find the script definition from pubspec.yaml and execute it.';
+  String get description => 'find the script definition and execute it';
 
   RunCommmand() {
     super.argParser.addFlag(
           'silent',
           abbr: 's',
-          help: 'Determine whether to show outputs or not.',
+          help: 'determine whether to show outputs or not',
           defaultsTo: false,
           negatable: false,
         );

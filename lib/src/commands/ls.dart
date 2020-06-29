@@ -6,8 +6,7 @@ class ListCommand extends Command {
   String get name => 'ls';
 
   @override
-  String get description =>
-      'List the available scripts in the current directory.';
+  String get description => 'list available scripts in the current config';
 
   @override
   Future<void> run() async {
@@ -31,12 +30,14 @@ class ListCommand extends Command {
 
     print(infoLine);
     print('│');
-    for (final entry in makeKeys(definitions).asMap().entries) {
+
+    final keys = makeKeys(definitions);
+    for (final entry in keys.asMap().entries) {
       final i = entry.key;
       final value = formatAlias(entry.value);
       final subcommands = mapping[entry.key];
 
-      print('${getPrefix(i, makeKeys(definitions).length)} $value');
+      print('${getPrefix(i, keys.length)} $value');
 
       for (final subEntry in subcommands.asMap().entries) {
         final j = subEntry.key;
@@ -45,7 +46,8 @@ class ListCommand extends Command {
               subEntry.value.replaceFirst('\$', '').replaceAll('\\\$', '\$'),
             );
 
-        print('│   ${getPrefix(j, subcommands.length)} $subValue');
+        print(
+            '${i == keys.length - 1 ? ' ' : '│'}   ${getPrefix(j, subcommands.length)} $subValue');
       }
     }
   }

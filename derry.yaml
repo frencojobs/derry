@@ -1,6 +1,7 @@
 test: pub run test
 generate: pub run build_runner build --delete-conflicting-outputs
 publish:
+  - $generate
   - $test
   - pub publish --dry-run
 cargo_build: cargo build --release

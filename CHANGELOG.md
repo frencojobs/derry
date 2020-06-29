@@ -1,3 +1,9 @@
+## 0.1.1
+
+- Refactored ffi directory to bindings directory
+- Refactored usage lines to be all lowercase and with no period
+- Added `derry --version` option
+
 ## 0.1.0
 
 - Added support for `derry source` command

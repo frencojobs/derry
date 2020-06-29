@@ -8,5 +8,5 @@ class TestCommand extends RunCommmand {
   String get name => 'test';
 
   @override
-  String get description => 'alias to derry run test.';
+  String get description => 'alias to derry run test';
 }

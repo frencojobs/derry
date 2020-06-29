@@ -9,13 +9,25 @@ void main(List<String> arguments) async {
     ..addCommand(RunCommmand())
     ..addCommand(TestCommand())
     ..addCommand(BuildCommand())
-    ..addCommand(SourceCommand());
+    ..addCommand(SourceCommand())
+    ..argParser.addFlag(
+      'version',
+      abbr: 'v',
+      negatable: false,
+      help: 'output the version number',
+    );
 
-  try {
-    await runner.run(arguments);
-  } on Error catch (error) {
-    errorHandler(error);
-  } catch (error) {
-    print(error);
+  final argResults = runner.parse(arguments);
+
+  if (argResults['version']) {
+    print('derry version: $packageVersion');
+  } else {
+    try {
+      await runner.run(arguments);
+    } on Error catch (error) {
+      errorHandler(error);
+    } catch (error) {
+      print(error);
+    }
   }
 }

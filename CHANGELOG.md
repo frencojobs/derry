@@ -1,3 +1,7 @@
+## 0.1.1+1
+
+- Updated the pub link in README.md from `http` to `https` to get better pub score
+
 ## 0.1.1
 
 - Refactored ffi directory to bindings directory

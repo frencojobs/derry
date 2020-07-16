@@ -33,7 +33,7 @@ derry build
 
 ## Installation
 
-Install derry as a global dependency from [Pub](http://pub.dev) as follows.
+Install derry as a global dependency from [Pub](https://pub.dev) as follows.
 
 ```bash
 pub global activate derry

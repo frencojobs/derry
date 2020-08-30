@@ -52,7 +52,7 @@ class RunCommmand extends Command {
 
       final info = await loadInfo();
       final definitions = await loadDefinitions();
-      final infoLine = '> ${info.name}@${info.version} $arg ${info.pwd}';
+      final infoLine = '> ${info.name}@${info.version} $arg';
 
       execute(
         definitions,

@@ -37,8 +37,6 @@ part 'src/error/error_type.dart';
 
 part 'src/commands/ls.dart';
 part 'src/commands/run.dart';
-part 'src/commands/test.dart';
-part 'src/commands/build.dart';
 part 'src/commands/source.dart';
 
 part 'src/models/info.dart';

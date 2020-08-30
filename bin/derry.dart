@@ -1,14 +1,17 @@
+import 'dart:io';
 import 'package:derry/derry.dart';
 import 'package:args/command_runner.dart';
 
-void main(List<String> arguments) async {
+Future<void> main(List<String> arguments) async {
+  await executeDerry(arguments);
+}
+
+Future<void> executeDerry(List<String> arguments) async {
   final runner = CommandRunner('derry', 'A script runner/manager for dart.');
 
   runner
-    ..addCommand(ListCommand())
     ..addCommand(RunCommmand())
-    ..addCommand(TestCommand())
-    ..addCommand(BuildCommand())
+    ..addCommand(ListCommand())
     ..addCommand(SourceCommand())
     ..argParser.addFlag(
       'version',
@@ -27,7 +30,13 @@ void main(List<String> arguments) async {
     } on Error catch (error) {
       errorHandler(error);
     } catch (error) {
-      print(error);
+      if (error is UsageException &&
+          error.message.startsWith('Could not find a command named')) {
+        await executeDerry(['run', ...arguments]);
+      } else {
+        print(error);
+        exit(1);
+      }
     }
   }
 }

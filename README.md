@@ -24,8 +24,6 @@ scripts:
 and run
 
 ```bash
-derry run build
-# or by alias
 derry build
 ```
 
@@ -42,7 +40,7 @@ pub global activate derry
 Then use derry to run a command from the current dart/flutter project.
 
 ```bash
-derry run [script]
+derry [script]
 ```
 
 <br>
@@ -91,15 +89,6 @@ build:
   - pub run test
   - echo "test completed"
   - pub run build_runner build
-```
-
-**Use aliases**
-
-Most used scripts are defined as aliases that you can use with a shorter derry command. Options available with `derry run` command will also be available with these aliases. No other functionalities are added to these aliases, they are just extensions of `derry run` command.
-
-```bash
-derry build # instead of derry run build
-derry test # instead of derry run test
 ```
 
 **Nested scripts**

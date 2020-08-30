@@ -11,7 +11,7 @@ class ListCommand extends Command {
   @override
   Future<void> run() async {
     final info = await loadInfo();
-    final infoLine = '+ ${info.name}@${info.version} ${info.pwd}';
+    final infoLine = '+ ${info.name}@${info.version}';
     final definitions = await loadDefinitions();
 
     final mapping = Map.fromEntries(

@@ -2,6 +2,7 @@
 
 - Now `run` scripts can be used without using the `run` keyword. For example, `derry test` can be used instead of `derry run test` without explicit implementations, for all scripts
 - Removed the old `build` and `test` alias implementations
+- The derry commands no longer print the current directory on the script execution
 
 ## 0.1.1+1
 

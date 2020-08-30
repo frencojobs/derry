@@ -4,7 +4,6 @@ part of derry;
 class Info extends Equatable {
   final String name;
   final String version;
-  final String pwd = Directory.current.path;
 
   Info({
     this.name,
@@ -12,5 +11,5 @@ class Info extends Equatable {
   });
 
   @override
-  List<Object> get props => [name, version, pwd];
+  List<Object> get props => [name, version];
 }

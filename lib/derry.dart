@@ -30,7 +30,7 @@ part 'src/bindings/get_object.dart';
 part 'src/commands/ls.dart';
 part 'src/commands/run.dart';
 part 'src/commands/source.dart';
-part 'src/commands/update.dart';
+part 'src/commands/upgrade.dart';
 
 part 'src/config.dart';
 part 'src/error/error_type.dart';

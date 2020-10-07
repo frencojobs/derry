@@ -1,3 +1,8 @@
+## 1.0.2
+
+- Rename `derry update` command to `derry upgrade`
+- Fix type casting error on extra arguments
+
 ## 1.0.1
 
 - Formatted changelogs according to pub.dev

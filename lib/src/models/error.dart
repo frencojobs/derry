@@ -4,7 +4,7 @@ class Error extends Equatable {
   final ErrorType type;
   final Map<String, dynamic> body;
 
-  Error({
+  const Error({
     this.type,
     this.body,
   });

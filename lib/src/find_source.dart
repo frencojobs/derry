@@ -6,7 +6,7 @@ Future<String> findSource() async {
   final definitions = pubspec.contents.value['scripts'];
 
   if (definitions == null) {
-    throw Error(type: ErrorType.DNF);
+    throw const Error(type: ErrorType.dnf);
   }
 
   if (definitions is YamlMap) {
@@ -15,11 +15,11 @@ Future<String> findSource() async {
     final fileScripts = await readYamlFile(definitions.toString());
 
     if (fileScripts.contents.value is YamlMap) {
-      return '$definitions';
+      return definitions;
     } else {
-      throw Error(type: ErrorType.CPD);
+      throw const Error(type: ErrorType.cpd);
     }
   } else {
-    throw Error(type: ErrorType.CPD);
+    throw const Error(type: ErrorType.cpd);
   }
 }

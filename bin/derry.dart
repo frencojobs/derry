@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:io' show stdout, stderr, exit;
 import 'package:derry/derry.dart';
 import 'package:args/command_runner.dart';
 
@@ -23,8 +23,8 @@ Future<void> executeDerry(List<String> arguments) async {
 
   final argResults = runner.parse(arguments);
 
-  if (argResults['version']) {
-    print('derry version: $packageVersion');
+  if (argResults['version'] as bool) {
+    stdout.writeln('derry version: $packageVersion');
   } else {
     try {
       await runner.run(arguments);
@@ -35,7 +35,7 @@ Future<void> executeDerry(List<String> arguments) async {
           error.message.startsWith('Could not find a command named')) {
         await executeDerry(['run', ...arguments]);
       } else {
-        print(error);
+        stderr.writeln(error);
         exit(1);
       }
     }

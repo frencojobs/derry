@@ -3,8 +3,9 @@ part of derry;
 typedef executor_fn = Void Function(Pointer<Utf8>, Int32);
 typedef Executor = void Function(Pointer<Utf8>, int);
 
+// ignore: avoid_positional_boolean_parameters
 void executor(String input, bool silent) {
-  final rootLibrary = 'package:derry/derry.dart';
+  const rootLibrary = 'package:derry/derry.dart';
   final blobs = cli
       .waitFor(Isolate.resolvePackageUri(Uri.parse(rootLibrary)))
       .resolve('src/blobs/');

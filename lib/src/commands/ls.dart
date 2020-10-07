@@ -33,15 +33,15 @@ class ListCommand extends Command {
           ),
     );
 
-    print(infoLine);
-    print('│');
+    stdout.writeln(infoLine);
+    stdout.writeln('│');
 
     for (final entry in keys.asMap().entries) {
       final i = entry.key;
       final value = entry.value;
       final subcommands = mapping[entry.key];
 
-      print('${getPrefix(i, keys.length)} $value');
+      stdout.writeln('${getPrefix(i, keys.length)} $value');
 
       for (final subEntry in subcommands.asMap().entries) {
         final j = subEntry.key;
@@ -49,8 +49,9 @@ class ListCommand extends Command {
           '{color.green}${subEntry.value.replaceAll('\\\$', '\$').split(':').join(' ')}{color.end}',
         );
 
-        print(
-            '${i == keys.length - 1 ? ' ' : '│'}   ${getPrefix(j, subcommands.length)} $subValue');
+        stdout.writeln(
+          '${i == keys.length - 1 ? ' ' : '│'}   ${getPrefix(j, subcommands.length)} $subValue',
+        );
       }
     }
   }

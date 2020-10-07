@@ -5,7 +5,7 @@ class Info extends Equatable {
   final String name;
   final String version;
 
-  Info({
+  const Info({
     this.name,
     this.version,
   });

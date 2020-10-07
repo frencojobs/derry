@@ -12,7 +12,7 @@ Future<void> executeDerry(List<String> arguments) async {
   runner
     ..addCommand(RunCommmand())
     ..addCommand(ListCommand())
-    ..addCommand(UpdateCommand())
+    ..addCommand(UpgradeCommand())
     ..addCommand(SourceCommand())
     ..argParser.addFlag(
       'version',

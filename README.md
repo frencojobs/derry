@@ -159,11 +159,11 @@ Use this command to see the location (both absolute and relative) path of the de
 derry source # --absolute or -a to show absolute path
 ```
 
-**Update derry**
+**Upgrade derry**
 
 ```bash
 pub global activate derry # or
-derry update # will run `pub global activate derry`
+derry upgrade # will run `pub global activate derry`
 ```
 
 <br>

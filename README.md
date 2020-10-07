@@ -132,6 +132,12 @@ build:
   - $test # instead of using derry test
   - $test --ignored # even with arguments
   - flutter build
+generate:
+  env:
+    - echo env
+release:
+  - $generate:env # use nested subcommands
+  - $build
 ```
 
 `derry test` will spawn a new derry process to execute, while subcommands are not, reducing the time took to run dart code, and spawn that process.

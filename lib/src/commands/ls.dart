@@ -13,13 +13,18 @@ class ListCommand extends Command {
     final info = await loadInfo();
     final infoLine = '+ ${info.name}@${info.version}';
     final definitions = await loadDefinitions();
+    final keys = makeKeys(definitions)..sort();
 
     final mapping = Map.fromEntries(
-      makeKeys(definitions)
+      keys
           .asMap()
           .entries
-          .map((entry) => MapEntry(
-              entry.key, parseDefinition(search(definitions, entry.value))))
+          .map(
+            (entry) => MapEntry(
+              entry.key,
+              parseDefinition(search(definitions, entry.value)),
+            ),
+          )
           .map(
             (entry) => MapEntry(
               entry.key,
@@ -31,31 +36,23 @@ class ListCommand extends Command {
     print(infoLine);
     print('│');
 
-    final keys = makeKeys(definitions);
     for (final entry in keys.asMap().entries) {
       final i = entry.key;
-      final value = formatAlias(entry.value);
+      final value = entry.value;
       final subcommands = mapping[entry.key];
 
       print('${getPrefix(i, keys.length)} $value');
 
       for (final subEntry in subcommands.asMap().entries) {
         final j = subEntry.key;
-        final subValue = format('{color.yellow}\${color.end}') +
-            formatAlias(
-              subEntry.value.replaceFirst('\$', '').replaceAll('\\\$', '\$'),
-            );
+        final subValue = format(
+          '{color.green}${subEntry.value.replaceAll('\\\$', '\$').split(':').join(' ')}{color.end}',
+        );
 
         print(
             '${i == keys.length - 1 ? ' ' : '│'}   ${getPrefix(j, subcommands.length)} $subValue');
       }
     }
-  }
-
-  String formatAlias(String input) {
-    return als.contains(input)
-        ? format('{color.green}$input{color.end}')
-        : input;
   }
 
   String getPrefix(int current, int len) {

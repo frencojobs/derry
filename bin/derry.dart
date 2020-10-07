@@ -23,8 +23,8 @@ Future<void> executeDerry(List<String> arguments) async {
 
   final argResults = runner.parse(arguments);
 
-  if (argResults['version'] != null) {
-    stdout.write('derry version: $packageVersion');
+  if (argResults['version'] as bool) {
+    stdout.writeln('derry version: $packageVersion');
   } else {
     try {
       await runner.run(arguments);
@@ -35,7 +35,7 @@ Future<void> executeDerry(List<String> arguments) async {
           error.message.startsWith('Could not find a command named')) {
         await executeDerry(['run', ...arguments]);
       } else {
-        stderr.write(error);
+        stderr.writeln(error);
         exit(1);
       }
     }

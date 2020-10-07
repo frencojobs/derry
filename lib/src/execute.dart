@@ -22,7 +22,7 @@ void execute(
 
   final definition = parseDefinition(searchResult);
 
-  if (infoLine != null) stdout.write(infoLine);
+  if (infoLine != null) stdout.writeln(infoLine);
   switch (definition.execution) {
     case 'once':
       final script = definition.scripts.join(' && ');

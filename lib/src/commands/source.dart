@@ -22,9 +22,9 @@ class SourceCommand extends Command {
     final absolute = super.argResults['absolute'];
 
     if (absolute != null) {
-      stdout.write(File(await findSource()).absolute.path);
+      stdout.writeln(File(await findSource()).absolute.path);
     } else {
-      stdout.write(await findSource());
+      stdout.writeln(await findSource());
     }
   }
 }

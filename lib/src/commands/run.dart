@@ -44,7 +44,7 @@ class RunCommmand extends Command {
     final silent = super.argResults['silent'] as bool;
 
     if (args.isEmpty && !alias) {
-      stdout.write(super.usage);
+      stdout.writeln(super.usage);
     } else {
       final arg =
           alias ? '$name ${args.join(' ')}'.trim() : args.join(' ').trim();

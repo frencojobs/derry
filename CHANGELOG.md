@@ -1,4 +1,12 @@
-# 0.1.4
+## 1.0.1
+
+- Formatted changelogs according to pub.dev
+
+## 1.0.0
+
+- Today I learned how versioning system actually works
+
+## 0.1.4
 
 - Derry now uses `lint` instead of `pedantic` as code linter & analyzer
 - Code base is now formatted according to the `lint`'s rules

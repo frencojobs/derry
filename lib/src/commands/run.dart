@@ -40,7 +40,7 @@ class RunCommmand extends Command {
   Future<void> run() async {
     final parsed = parseExtras(super.argResults.arguments);
     final args = super.argParser.parse(parsed['args'] as Iterable<String>).rest;
-    final extra = (parsed['extra'] as List<String>).join(' ');
+    final extra = (parsed['extra'] as List).join(' ');
     final silent = super.argResults['silent'] as bool;
 
     if (args.isEmpty && !alias) {

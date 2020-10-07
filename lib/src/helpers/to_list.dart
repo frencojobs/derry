@@ -7,7 +7,7 @@ List<String> toList(dynamic input) {
     return [input.toString()];
   } else {
     throw Error(
-      type: ErrorType.CCT,
+      type: ErrorType.cct,
       body: {
         'from': input.runtimeType,
         'to': 'List<String>',

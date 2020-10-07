@@ -15,7 +15,6 @@ class RunCommmand extends Command {
           'silent',
           abbr: 's',
           help: 'determine whether to show outputs or not',
-          defaultsTo: false,
           negatable: false,
         );
   }
@@ -40,12 +39,12 @@ class RunCommmand extends Command {
   @override
   Future<void> run() async {
     final parsed = parseExtras(super.argResults.arguments);
-    final args = super.argParser.parse(parsed['args']).rest;
-    final extra = parsed['extra'].join(' ');
-    final silent = super.argResults['silent'];
+    final args = super.argParser.parse(parsed['args'] as Iterable<String>).rest;
+    final extra = (parsed['extra'] as List<String>).join(' ');
+    final silent = super.argResults['silent'] as bool;
 
     if (args.isEmpty && !alias) {
-      print(super.usage);
+      stdout.write(super.usage);
     } else {
       final arg =
           alias ? '$name ${args.join(' ')}'.trim() : args.join(' ').trim();

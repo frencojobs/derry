@@ -7,7 +7,7 @@ Future<YamlDocument> readYamlFile(String filePath) async {
 
   if (!await file.exists()) {
     throw Error(
-      type: ErrorType.FNF,
+      type: ErrorType.fnf,
       body: {'path': filePath},
     );
   }
@@ -15,7 +15,7 @@ Future<YamlDocument> readYamlFile(String filePath) async {
   try {
     document = loadYamlDocument(await file.readAsString());
   } catch (e) {
-    throw Error(type: ErrorType.CPY);
+    throw const Error(type: ErrorType.cpy);
   }
 
   return document;

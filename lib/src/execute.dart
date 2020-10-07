@@ -12,7 +12,7 @@ void execute(
   /// for incomplete calls for nested scripts
   if (searchResult is YamlMap && !searchResult.value.containsKey('(scripts)')) {
     throw Error(
-      type: ErrorType.SNF,
+      type: ErrorType.snf,
       body: {
         'script': arg,
         'definitions': makeKeys(definitions),
@@ -22,7 +22,7 @@ void execute(
 
   final definition = parseDefinition(searchResult);
 
-  if (infoLine != null) print(infoLine);
+  if (infoLine != null) stdout.write(infoLine);
   switch (definition.execution) {
     case 'once':
       final script = definition.scripts.join(' && ');

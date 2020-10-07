@@ -2,22 +2,22 @@ part of derry;
 
 dynamic search(Map data, String key) {
   var d = data;
-  var current = '';
+  final current = StringBuffer();
   final keyPieces = key.split(' ');
 
   for (final entry in keyPieces.asMap().entries) {
     final i = entry.key;
     final k = entry.value;
 
-    current += '$k ';
+    current.write('$k ');
     if (d is Map && d.containsKey(k)) {
       if (i == keyPieces.length - 1) {
         return d[k];
       } else if (d[k] is Map) {
-        d = d[k];
+        d = d[k] as Map;
       } else {
         throw Error(
-          type: ErrorType.SNF,
+          type: ErrorType.snf,
           body: {
             'script': key.trim(),
             'definitions': makeKeys(data),
@@ -26,9 +26,9 @@ dynamic search(Map data, String key) {
       }
     } else {
       throw Error(
-        type: ErrorType.SNF,
+        type: ErrorType.snf,
         body: {
-          'script': current.trim(),
+          'script': current.toString().trim(),
           'definitions': makeKeys(data),
         },
       );

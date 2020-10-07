@@ -13,7 +13,6 @@ class SourceCommand extends Command {
           'absolute',
           abbr: 'a',
           help: 'determine whether to show absolute paths or not',
-          defaultsTo: false,
           negatable: false,
         );
   }
@@ -22,10 +21,10 @@ class SourceCommand extends Command {
   Future<void> run() async {
     final absolute = super.argResults['absolute'];
 
-    if (absolute) {
-      print(File(await findSource()).absolute.path);
+    if (absolute != null) {
+      stdout.write(File(await findSource()).absolute.path);
     } else {
-      print(await findSource());
+      stdout.write(await findSource());
     }
   }
 }

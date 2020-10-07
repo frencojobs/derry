@@ -11,7 +11,7 @@ class UpdateCommand extends Command {
   @override
   Future<void> run() async {
     {
-      final infoLine = '> derry@${packageVersion} update';
+      const infoLine = '> derry@$packageVersion update';
 
       execute(
         {'update': 'pub global activate derry'},

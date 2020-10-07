@@ -20,7 +20,7 @@ String getObject() {
     extension = 'dll';
   } else {
     throw Error(
-      type: ErrorType.PNS,
+      type: ErrorType.pns,
       body: {'os': Platform.operatingSystem},
     );
   }
@@ -28,7 +28,7 @@ String getObject() {
   final result = os + architecture;
   if (!supported.contains(result)) {
     throw Error(
-      type: ErrorType.PNS,
+      type: ErrorType.pns,
       body: {'architecture': result},
     );
   }

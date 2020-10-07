@@ -10,7 +10,7 @@ class Definition extends Equatable {
   final String execution;
   final List<String> scripts;
 
-  Definition({
+  const Definition({
     this.execution = 'multiple',
     this.scripts,
   });

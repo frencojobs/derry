@@ -18,14 +18,14 @@ void main() {
     test('load_info should return proper results', () async {
       expect(
         await loadInfo(),
-        equals(Info(name: 'derry', version: packageVersion)),
+        equals(const Info(name: 'derry', version: packageVersion)),
       );
     });
 
     test('parse_definition should return expected outputs', () {
       expect(
         parseDefinition('echo 0'),
-        equals(Definition(execution: 'multiple', scripts: ['echo 0'])),
+        equals(const Definition(scripts: ['echo 0'])),
       );
     });
 
@@ -36,13 +36,13 @@ void main() {
       );
     });
 
-    test('read_yaml_file should fail when there\'s not a file', () {
+    test("read_yaml_file should fail when there's not a file", () {
       expect(
-        () async => await readYamlFile('yaml'),
+        () async => readYamlFile('yaml'),
         throwsA(
           equals(
-            Error(
-              type: ErrorType.FNF,
+            const Error(
+              type: ErrorType.fnf,
               body: {'path': 'yaml'},
             ),
           ),
@@ -52,10 +52,10 @@ void main() {
 
     test('read_yaml_file should fail when the file is not in yaml format', () {
       expect(
-        () async => await readYamlFile('README.md'),
+        () async => readYamlFile('README.md'),
         throwsA(
           equals(
-            Error(type: ErrorType.CPY),
+            const Error(type: ErrorType.cpy),
           ),
         ),
       );
@@ -66,9 +66,12 @@ void main() {
         () => toList(null),
         throwsA(
           equals(
-            Error(
-              type: ErrorType.CCT,
-              body: {'from': Null, 'to': 'List<String>'},
+            const Error(
+              type: ErrorType.cct,
+              body: {
+                'from': Null,
+                'to': 'List<String>',
+              },
             ),
           ),
         ),

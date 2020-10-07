@@ -1,4 +1,11 @@
-# 0.1.2
+# 0.1.3
+
+- Add support for nested subcommands like `$generate:env` to run as `derry generate env`
+- Add support for `derry update` command
+- Sort output of `derry ls` tree
+- Remove alias list
+
+## 0.1.2
 
 - Now `run` scripts can be used without using the `run` keyword. For example, `derry test` can be used instead of `derry run test` without explicit implementations, for all scripts
 - Removed the old `build` and `test` alias implementations

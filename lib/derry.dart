@@ -21,6 +21,7 @@ import 'package:args/command_runner.dart' show Command;
 import 'package:equatable/equatable.dart' show Equatable;
 import 'package:string_similarity/string_similarity.dart';
 
+import 'src/version.dart';
 export 'src/version.dart';
 
 part 'src/config.dart';
@@ -37,6 +38,7 @@ part 'src/error/error_type.dart';
 
 part 'src/commands/ls.dart';
 part 'src/commands/run.dart';
+part 'src/commands/update.dart';
 part 'src/commands/source.dart';
 
 part 'src/models/info.dart';

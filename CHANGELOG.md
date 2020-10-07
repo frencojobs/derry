@@ -1,4 +1,8 @@
-# 1.0.0
+## 1.0.1
+
+- Formatted changelogs according to pub.dev
+
+## 1.0.0
 
 - Today I learned how versioning system actually works
 

@@ -1,4 +1,10 @@
-# 0.1.3
+# 0.1.4
+
+- Derry now uses `lint` instead of `pedantic` as code linter & analyzer
+- Code base is now formatted according to the `lint`'s rules
+- Use `stdout` and `stderr` instead of `print`
+
+## 0.1.3
 
 - Add support for nested subcommands like `$generate:env` to run as `derry generate env`
 - Add support for `derry update` command

@@ -1,3 +1,7 @@
+## 1.0.3
+
+- Format error types in error messages to be uppercase
+
 ## 1.0.2
 
 - Rename `derry update` command to `derry upgrade`

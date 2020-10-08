@@ -3,7 +3,9 @@ part of derry;
 void errorHandler(Error t) {
   final prefixer = format('derry {color.red}ERROR!{color.end}');
 
-  stderr.writeln('$prefixer ${t.type.toString().replaceAll('ErrorType.', '')}');
+  stderr.writeln(
+    '$prefixer ${t.type.toString().replaceAll('ErrorType.', '').toUpperCase()}',
+  );
 
   switch (t.type) {
     case ErrorType.snf:

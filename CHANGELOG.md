@@ -1,3 +1,7 @@
+## 1.0.5
+
+- Update pub package description
+
 ## 1.0.4
 
 - Refactor to not expose all APIs but only important ones so most library APIs will not be available

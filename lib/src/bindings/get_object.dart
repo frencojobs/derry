@@ -1,4 +1,6 @@
-part of derry;
+import 'dart:ffi' show IntPtr, sizeOf;
+import 'dart:io' show Platform;
+import 'package:derry/derry.dart' show Error, ErrorType;
 
 // took this piece of code from dart/tflite_native
 /// supported operating systems with architectures

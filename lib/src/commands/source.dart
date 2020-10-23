@@ -1,6 +1,9 @@
 part of derry;
 
 /// the `derry source` command
+/// which prints out the current config file location.
+///
+/// It will throw an error of [ErrorType.dnf] if config doesn't exist.
 class SourceCommand extends Command {
   @override
   String get name => 'source';

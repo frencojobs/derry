@@ -1,4 +1,15 @@
-part of derry;
+import 'dart:cli' as cli;
+import 'dart:ffi'
+    show
+        Int32,
+        Void,
+        Pointer,
+        NativeFunction,
+        DynamicLibrary,
+        NativeFunctionPointer;
+import 'dart:isolate' show Isolate;
+import 'package:ffi/ffi.dart' show Utf8;
+import 'package:derry/src/bindings/get_object.dart';
 
 typedef executor_fn = Void Function(Pointer<Utf8>, Int32);
 typedef Executor = void Function(Pointer<Utf8>, int);

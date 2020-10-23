@@ -1,6 +1,11 @@
 part of derry;
 
 /// the `derry upgrade` command
+/// which will attempt to run the pub command to
+/// upgrade the derry package itself.
+///
+/// It's an equivalent of executing the
+/// `pub global activate derry` in the derry executor.
 class UpgradeCommand extends Command {
   @override
   String get name => 'upgrade';

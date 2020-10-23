@@ -2,6 +2,15 @@ import 'dart:io';
 
 import 'package:test/test.dart';
 import 'package:derry/derry.dart';
+import 'package:derry/src/load_info.dart';
+import 'package:derry/src/load_definitions.dart';
+import 'package:derry/src/helpers/to_list.dart';
+import 'package:derry/src/helpers/subcommand.dart';
+import 'package:derry/src/helpers/make_keys.dart';
+import 'package:derry/src/helpers/deep_search.dart';
+import 'package:derry/src/helpers/read_pubspec.dart';
+import 'package:derry/src/helpers/read_yaml_file.dart';
+import 'package:derry/src/helpers/parse_defnintion.dart';
 import 'package:yaml/yaml.dart' show loadYamlDocument;
 
 void main() {

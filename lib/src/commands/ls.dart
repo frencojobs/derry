@@ -1,6 +1,13 @@
 part of derry;
 
 /// the `derry ls` command
+/// which will print a recursive tree representation of
+/// all the available scripts within the current config.
+///
+/// Notes:
+///
+/// - the name & version of the package by the config will also be printed out
+/// - subcommands will starts with an `$` and will have a different color
 class ListCommand extends Command {
   @override
   String get name => 'ls';

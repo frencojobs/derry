@@ -1,3 +1,8 @@
+## 1.0.4
+
+- Refactor to not expose all APIs but only important ones so most library APIs will not be available
+- Add more documentation comments
+
 ## 1.0.3
 
 - Format error types in error messages to be uppercase

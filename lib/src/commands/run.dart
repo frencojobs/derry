@@ -1,6 +1,15 @@
 part of derry;
 
 /// the `derry run` command
+/// which parses the arguments and execute the scripts in
+/// the executor using ffi. It takes `--silent` or `-s` as
+/// a flag to decide whether to print output or not, which
+/// will be `false` by default.
+///
+/// Note:
+///
+/// - the package name, version, and the script will also be
+/// printed out as the info message
 class RunCommmand extends Command {
   bool get alias => false;
 

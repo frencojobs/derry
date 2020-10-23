@@ -1,4 +1,6 @@
-part of derry;
+import 'dart:io' show File;
+import 'package:yaml/yaml.dart';
+import 'package:derry/derry.dart';
 
 /// read and return yaml document
 Future<YamlDocument> readYamlFile(String filePath) async {

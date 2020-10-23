@@ -1,4 +1,7 @@
-part of derry;
+import 'package:yaml/yaml.dart';
+import 'package:derry/derry.dart';
+import 'package:derry/src/helpers/read_pubspec.dart';
+import 'package:derry/src/helpers/read_yaml_file.dart';
 
 /// load scripts from pubspec yaml content
 Future<Map> loadDefinitions() async {

@@ -1,4 +1,5 @@
-part of derry;
+import 'package:derry/derry.dart';
+import 'package:derry/src/helpers/read_pubspec.dart';
 
 /// load package info from pubspec yaml content
 Future<Info> loadInfo() async {

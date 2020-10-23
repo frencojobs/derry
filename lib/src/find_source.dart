@@ -1,4 +1,7 @@
-part of derry;
+import 'package:yaml/yaml.dart';
+import 'package:derry/derry.dart';
+import 'package:derry/src/helpers/read_pubspec.dart';
+import 'package:derry/src/helpers/read_yaml_file.dart';
 
 /// find the source of the derry commands
 Future<String> findSource() async {

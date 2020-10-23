@@ -1,4 +1,5 @@
-part of derry;
+import 'package:yaml/yaml.dart';
+import 'package:derry/derry.dart';
 
 List<String> toList(dynamic input) {
   if (input is YamlList) {

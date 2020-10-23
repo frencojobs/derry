@@ -1,5 +1,10 @@
 part of derry;
 
+/// The function to execute scripts from ffi, which
+/// takes a [YamlMap] of definitions, an argument to parse and execute,
+/// an extra bit of command which will be passed down to the script,
+/// a `boolean` value to decide whether to print output
+/// or not, and a [String] to print before executing the script.
 void execute(
   Map definitions,
   String arg, {

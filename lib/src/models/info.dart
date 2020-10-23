@@ -1,6 +1,7 @@
 part of derry;
 
-/// Package information
+/// Package information which includes
+/// package name & version with both being [String].
 class Info extends Equatable {
   final String name;
   final String version;

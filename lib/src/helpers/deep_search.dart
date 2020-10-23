@@ -1,4 +1,5 @@
-part of derry;
+import 'package:derry/derry.dart';
+import 'package:derry/src/helpers/make_keys.dart';
 
 dynamic search(Map data, String key) {
   var d = data;

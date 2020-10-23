@@ -1,5 +1,6 @@
 part of derry;
 
+/// Function to handle errors based on [ErrorType].
 void errorHandler(Error t) {
   final prefixer = format('derry {color.red}ERROR!{color.end}');
 

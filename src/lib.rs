@@ -1,5 +1,7 @@
+extern crate colored;
 extern crate ctrlc;
 extern crate shared_child;
+use colored::*;
 use shared_child::SharedChild;
 use std::ffi::CStr;
 use std::os::raw::c_char;
@@ -7,18 +9,16 @@ use std::process::Command;
 use std::sync::Arc;
 
 #[no_mangle]
-pub extern "C" fn executor(ptr: *const c_char, silent: bool) {
+pub extern "C" fn executor(ptr: *const c_char) -> i32 {
     let c_str = unsafe { CStr::from_ptr(ptr) };
     let script: String = String::from(c_str.to_str().unwrap());
 
-    println!("> {}", script);
-    if !silent {
-        println!("");
-    }
-    executor_fn(&script, silent);
+    println!("$ {}", script.dimmed());
+    println!("");
+    executor_fn(&script)
 }
 
-fn executor_fn(script: &String, silent: bool) {
+fn executor_fn(script: &String) -> i32 {
     #[cfg(target_os = "windows")]
     let shell: &str = "cmd";
 
@@ -38,7 +38,7 @@ fn executor_fn(script: &String, silent: bool) {
     let child_arc = Arc::new(child_shared);
     let child_arc_clone = child_arc.clone();
 
-    ctrlc::set_handler(move || {
+    let _ = ctrlc::set_handler(move || {
         child_arc_clone
             .kill()
             .expect("Rust: Couldn't kill the process!");
@@ -46,9 +46,10 @@ fn executor_fn(script: &String, silent: bool) {
     });
     // .expect("Rust: Error setting interrupt handler!");
 
-    if silent {
-        child.output().expect("Rust: Unable to get process output");
-    } else {
-        child_arc.wait().expect("Rust: the process wasn't running!");
+    let status = child_arc.wait().expect("Rust: Process can't be awaited");
+
+    match status.code() {
+        Some(code) => code,
+        None => 1,
     }
 }

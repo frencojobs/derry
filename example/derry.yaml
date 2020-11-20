@@ -10,7 +10,7 @@ run_once:
   (execution): once
   (scripts):
     - echo test
-    - exit
+    - "false"
     - echo "this wont be called"
 # example for subcommands
 prep:

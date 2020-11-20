@@ -56,8 +56,6 @@ scripts:
 
 ```bash
 derry build
-# or use `silent` option to hide outputs
-derry build --silent
 # or even with additional arguments
 derry build -- --delete-conflicting-outputs
 ```

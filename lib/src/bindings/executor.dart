@@ -9,11 +9,11 @@ import 'package:ffi/ffi.dart' show Utf8;
 // Project imports:
 import 'package:derry/src/bindings/get_object.dart';
 
-typedef executor_fn = ffi.Void Function(ffi.Pointer<Utf8>, ffi.Int32);
-typedef Executor = void Function(ffi.Pointer<Utf8>, int);
+typedef executor_fn = ffi.Int32 Function(ffi.Pointer<Utf8>);
+typedef Executor = int Function(ffi.Pointer<Utf8>);
 
 // ignore: avoid_positional_boolean_parameters
-void executor(String input, bool silent) {
+int executor(String input) {
   const rootLibrary = 'package:derry/derry.dart';
   final blobs = cli
       .waitFor(Isolate.resolvePackageUri(Uri.parse(rootLibrary)))
@@ -26,5 +26,5 @@ void executor(String input, bool silent) {
   final executorFunction = executorPointer.asFunction<Executor>();
 
   final script = Utf8.toUtf8(input).cast<Utf8>();
-  executorFunction(script, silent ? 1 : 0);
+  return executorFunction(script);
 }

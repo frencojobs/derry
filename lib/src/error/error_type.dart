@@ -1,5 +1,3 @@
-part of derry;
-
 /// Error Types
 ///
 /// Types of error that can be handled.

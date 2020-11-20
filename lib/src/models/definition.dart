@@ -1,4 +1,5 @@
-part of derry;
+// Package imports:
+import 'package:equatable/equatable.dart';
 
 /// A typical script definition
 ///

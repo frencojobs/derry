@@ -1,5 +1,7 @@
-import 'package:derry/derry.dart';
-import 'package:derry/src/helpers/make_keys.dart';
+// Project imports:
+import 'package:derry/error.dart';
+import 'package:derry/helpers.dart';
+import 'package:derry/models.dart';
 
 dynamic search(Map data, String key) {
   var d = data;
@@ -17,7 +19,7 @@ dynamic search(Map data, String key) {
       } else if (d[k] is Map) {
         d = d[k] as Map;
       } else {
-        throw Error(
+        throw DerryError(
           type: ErrorType.snf,
           body: {
             'script': key.trim(),
@@ -26,7 +28,7 @@ dynamic search(Map data, String key) {
         );
       }
     } else {
-      throw Error(
+      throw DerryError(
         type: ErrorType.snf,
         body: {
           'script': current.toString().trim(),

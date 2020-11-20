@@ -1,6 +1,10 @@
+// Dart imports:
 import 'dart:ffi' show IntPtr, sizeOf;
-import 'dart:io' show Platform;
-import 'package:derry/derry.dart' show Error, ErrorType;
+import 'dart:io';
+
+// Project imports:
+import 'package:derry/error.dart';
+import 'package:derry/models.dart';
 
 // took this piece of code from dart/tflite_native
 /// supported operating systems with architectures
@@ -21,7 +25,7 @@ String getObject() {
     os = 'win';
     extension = 'dll';
   } else {
-    throw Error(
+    throw DerryError(
       type: ErrorType.pns,
       body: {'os': Platform.operatingSystem},
     );
@@ -29,7 +33,7 @@ String getObject() {
 
   final result = os + architecture;
   if (!supported.contains(result)) {
-    throw Error(
+    throw DerryError(
       type: ErrorType.pns,
       body: {'architecture': result},
     );

@@ -1,6 +1,12 @@
-import 'dart:io' show File;
+// Dart imports:
+import 'dart:io';
+
+// Package imports:
 import 'package:yaml/yaml.dart';
-import 'package:derry/derry.dart';
+
+// Project imports:
+import 'package:derry/error.dart';
+import 'package:derry/models.dart';
 
 /// read and return yaml document
 Future<YamlDocument> readYamlFile(String filePath) async {
@@ -8,7 +14,7 @@ Future<YamlDocument> readYamlFile(String filePath) async {
   YamlDocument document;
 
   if (!await file.exists()) {
-    throw Error(
+    throw DerryError(
       type: ErrorType.fnf,
       body: {'path': filePath},
     );
@@ -17,7 +23,7 @@ Future<YamlDocument> readYamlFile(String filePath) async {
   try {
     document = loadYamlDocument(await file.readAsString());
   } catch (e) {
-    throw const Error(type: ErrorType.cpy);
+    throw const DerryError(type: ErrorType.cpy);
   }
 
   return document;

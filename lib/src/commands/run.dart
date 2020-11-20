@@ -1,10 +1,16 @@
-part of derry;
+// Dart imports:
+import 'dart:io';
+
+// Package imports:
+import 'package:args/command_runner.dart';
+
+// Project imports:
+import 'package:derry/helpers.dart';
+import 'package:derry/src/execute.dart';
 
 /// the `derry run` command
 /// which parses the arguments and execute the scripts in
-/// the executor using ffi. It takes `--silent` or `-s` as
-/// a flag to decide whether to print output or not, which
-/// will be `false` by default.
+/// the executor using ffi.
 ///
 /// Note:
 ///
@@ -18,15 +24,6 @@ class RunCommmand extends Command {
 
   @override
   String get description => 'find the script definition and execute it';
-
-  RunCommmand() {
-    super.argParser.addFlag(
-          'silent',
-          abbr: 's',
-          help: 'determine whether to show outputs or not',
-          negatable: false,
-        );
-  }
 
   Map<String, dynamic> parseExtras(List<String> args) {
     final flag = args.contains('--');
@@ -46,27 +43,27 @@ class RunCommmand extends Command {
   }
 
   @override
-  Future<void> run() async {
+  Future<int> run() async {
     final parsed = parseExtras(super.argResults.arguments);
     final args = super.argParser.parse(parsed['args'] as Iterable<String>).rest;
     final extra = (parsed['extra'] as List).join(' ');
-    final silent = super.argResults['silent'] as bool;
 
     if (args.isEmpty && !alias) {
       stdout.writeln(super.usage);
+
+      return 0;
     } else {
       final arg =
           alias ? '$name ${args.join(' ')}'.trim() : args.join(' ').trim();
 
       final info = await loadInfo();
       final definitions = await loadDefinitions();
-      final infoLine = '> ${info.name}@${info.version} $arg';
+      final infoLine = '${info.name}@${info.version} $arg';
 
-      execute(
+      return execute(
         definitions,
         arg,
         extra: extra,
-        silent: silent,
         infoLine: infoLine,
       );
     }

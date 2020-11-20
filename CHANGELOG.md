@@ -1,3 +1,10 @@
+## 1.1.0
+
+- Scripts now return exit codes
+- Removed `--slient` or `-s` option from `run` command
+- Change info lines' styles
+- Reduced exported API elements to only commands and version
+
 ## 1.0.5
 
 - Update pub package description

@@ -11,3 +11,4 @@ crate-type = ["cdylib"] # dynamic library
 [dependencies]
 ctrlc = "3.1.4"
 shared_child = "0.3.4"
+colored = "2"

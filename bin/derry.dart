@@ -1,12 +1,21 @@
-import 'dart:io' show stdout, stderr, exit;
-import 'package:derry/derry.dart';
+// Dart imports:
+import 'dart:io';
+
+// Package imports:
 import 'package:args/command_runner.dart';
 
+// Project imports:
+import 'package:derry/commands.dart';
+import 'package:derry/error.dart';
+import 'package:derry/models.dart';
+import 'package:derry/version.dart';
+
 Future<void> main(List<String> arguments) async {
-  await executeDerry(arguments);
+  final exitCode = await executeDerry(arguments);
+  exit(exitCode);
 }
 
-Future<void> executeDerry(List<String> arguments) async {
+Future<int> executeDerry(List<String> arguments) async {
   final runner = CommandRunner('derry', 'A script runner/manager for dart.');
 
   runner
@@ -25,18 +34,22 @@ Future<void> executeDerry(List<String> arguments) async {
 
   if (argResults['version'] as bool) {
     stdout.writeln('derry version: $packageVersion');
+    return 0;
   } else {
     try {
-      await runner.run(arguments);
-    } on Error catch (error) {
+      final exitCode = await runner.run(arguments);
+      return exitCode as int ?? 0;
+    } on DerryError catch (error) {
       errorHandler(error);
+      return 1;
     } catch (error) {
       if (error is UsageException &&
           error.message.startsWith('Could not find a command named')) {
-        await executeDerry(['run', ...arguments]);
+        final exitCode = executeDerry(['run', ...arguments]);
+        return exitCode;
       } else {
         stderr.writeln(error);
-        exit(1);
+        return 1;
       }
     }
   }

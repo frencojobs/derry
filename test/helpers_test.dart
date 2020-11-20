@@ -1,17 +1,15 @@
+// Dart imports:
 import 'dart:io';
 
+// Package imports:
 import 'package:test/test.dart';
-import 'package:derry/derry.dart';
-import 'package:derry/src/load_info.dart';
-import 'package:derry/src/load_definitions.dart';
-import 'package:derry/src/helpers/to_list.dart';
-import 'package:derry/src/helpers/subcommand.dart';
-import 'package:derry/src/helpers/make_keys.dart';
-import 'package:derry/src/helpers/deep_search.dart';
-import 'package:derry/src/helpers/read_pubspec.dart';
-import 'package:derry/src/helpers/read_yaml_file.dart';
-import 'package:derry/src/helpers/parse_defnintion.dart';
-import 'package:yaml/yaml.dart' show loadYamlDocument;
+import 'package:yaml/yaml.dart';
+
+// Project imports:
+import 'package:derry/error.dart';
+import 'package:derry/helpers.dart';
+import 'package:derry/models.dart';
+import 'package:derry/version.dart';
 
 void main() {
   group('Are helpers working? Because ', () {
@@ -50,7 +48,7 @@ void main() {
         () async => readYamlFile('yaml'),
         throwsA(
           equals(
-            const Error(
+            const DerryError(
               type: ErrorType.fnf,
               body: {'path': 'yaml'},
             ),
@@ -64,7 +62,7 @@ void main() {
         () async => readYamlFile('README.md'),
         throwsA(
           equals(
-            const Error(type: ErrorType.cpy),
+            const DerryError(type: ErrorType.cpy),
           ),
         ),
       );
@@ -75,7 +73,7 @@ void main() {
         () => toList(null),
         throwsA(
           equals(
-            const Error(
+            const DerryError(
               type: ErrorType.cct,
               body: {
                 'from': Null,

@@ -1,5 +1,6 @@
-import 'package:derry/derry.dart';
-import 'package:derry/src/helpers/read_pubspec.dart';
+// Project imports:
+import 'package:derry/helpers.dart';
+import 'package:derry/models.dart';
 
 /// load package info from pubspec yaml content
 Future<Info> loadInfo() async {

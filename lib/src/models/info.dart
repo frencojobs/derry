@@ -1,4 +1,5 @@
-part of derry;
+// Package imports:
+import 'package:equatable/equatable.dart';
 
 /// Package information which includes
 /// package name & version with both being [String].

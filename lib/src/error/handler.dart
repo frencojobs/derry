@@ -1,7 +1,16 @@
-part of derry;
+// Dart imports:
+import 'dart:io';
+
+// Package imports:
+import 'package:console/console.dart';
+import 'package:string_similarity/string_similarity.dart';
+
+// Project imports:
+import 'package:derry/error.dart';
+import 'package:derry/models.dart';
 
 /// Function to handle errors based on [ErrorType].
-void errorHandler(Error t) {
+void errorHandler(DerryError t) {
   final prefixer = format('derry {color.red}ERROR!{color.end}');
 
   stderr.writeln(

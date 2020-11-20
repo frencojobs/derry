@@ -1,4 +1,14 @@
-part of derry;
+// Dart imports:
+import 'dart:io';
+
+// Package imports:
+import 'package:yaml/yaml.dart';
+
+// Project imports:
+import 'package:derry/error.dart';
+import 'package:derry/helpers.dart';
+import 'package:derry/models.dart';
+import 'package:derry/src/bindings/executor.dart';
 
 /// The function to execute scripts from ffi, which
 /// takes a [YamlMap] of definitions, an argument to parse and execute,
@@ -16,7 +26,7 @@ void execute(
 
   /// for incomplete calls for nested scripts
   if (searchResult is YamlMap && !searchResult.value.containsKey('(scripts)')) {
-    throw Error(
+    throw DerryError(
       type: ErrorType.snf,
       body: {
         'script': arg,

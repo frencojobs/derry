@@ -1,7 +1,10 @@
+// Package imports:
 import 'package:yaml/yaml.dart';
-import 'package:derry/derry.dart';
-import 'package:derry/src/helpers/read_pubspec.dart';
-import 'package:derry/src/helpers/read_yaml_file.dart';
+
+// Project imports:
+import 'package:derry/error.dart';
+import 'package:derry/helpers.dart';
+import 'package:derry/models.dart';
 
 /// load scripts from pubspec yaml content
 Future<Map> loadDefinitions() async {
@@ -9,7 +12,7 @@ Future<Map> loadDefinitions() async {
   final definitions = pubspec.contents.value['scripts'];
 
   if (definitions == null) {
-    throw const Error(type: ErrorType.dnf);
+    throw const DerryError(type: ErrorType.dnf);
   }
 
   if (definitions is YamlMap) {
@@ -20,9 +23,9 @@ Future<Map> loadDefinitions() async {
     if (fileScripts.contents.value is YamlMap) {
       return fileScripts.contents.value as Map;
     } else {
-      throw const Error(type: ErrorType.cpd);
+      throw const DerryError(type: ErrorType.cpd);
     }
   } else {
-    throw const Error(type: ErrorType.cpd);
+    throw const DerryError(type: ErrorType.cpd);
   }
 }

@@ -1,6 +1,14 @@
-import 'dart:io' show stdout, stderr, exit;
-import 'package:derry/derry.dart';
+// Dart imports:
+import 'dart:io';
+
+// Package imports:
 import 'package:args/command_runner.dart';
+
+// Project imports:
+import 'package:derry/commands.dart';
+import 'package:derry/error.dart';
+import 'package:derry/models.dart';
+import 'package:derry/version.dart';
 
 Future<void> main(List<String> arguments) async {
   await executeDerry(arguments);
@@ -28,7 +36,7 @@ Future<void> executeDerry(List<String> arguments) async {
   } else {
     try {
       await runner.run(arguments);
-    } on Error catch (error) {
+    } on DerryError catch (error) {
       errorHandler(error);
     } catch (error) {
       if (error is UsageException &&

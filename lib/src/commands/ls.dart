@@ -1,4 +1,12 @@
-part of derry;
+// Dart imports:
+import 'dart:io';
+
+// Package imports:
+import 'package:args/command_runner.dart';
+import 'package:console/console.dart';
+
+// Project imports:
+import 'package:derry/helpers.dart';
 
 /// the `derry ls` command
 /// which will print a recursive tree representation of

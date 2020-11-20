@@ -1,4 +1,9 @@
-part of derry;
+// Package imports:
+import 'package:args/command_runner.dart';
+
+// Project imports:
+import 'package:derry/src/execute.dart';
+import 'package:derry/version.dart';
 
 /// the `derry upgrade` command
 /// which will attempt to run the pub command to

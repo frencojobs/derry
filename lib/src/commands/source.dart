@@ -1,4 +1,11 @@
-part of derry;
+// Dart imports:
+import 'dart:io';
+
+// Package imports:
+import 'package:args/command_runner.dart';
+
+// Project imports:
+import 'package:derry/helpers.dart';
 
 /// the `derry source` command
 /// which prints out the current config file location.

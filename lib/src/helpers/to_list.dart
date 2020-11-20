@@ -1,5 +1,9 @@
+// Package imports:
 import 'package:yaml/yaml.dart';
-import 'package:derry/derry.dart';
+
+// Project imports:
+import 'package:derry/error.dart';
+import 'package:derry/models.dart';
 
 List<String> toList(dynamic input) {
   if (input is YamlList) {
@@ -7,7 +11,7 @@ List<String> toList(dynamic input) {
   } else if (input is String) {
     return [input.toString()];
   } else {
-    throw Error(
+    throw DerryError(
       type: ErrorType.cct,
       body: {
         'from': input.runtimeType,

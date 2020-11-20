@@ -1,6 +1,11 @@
-import 'dart:io' show Directory;
+// Dart imports:
+import 'dart:io';
+
+// Package imports:
 import 'package:yaml/yaml.dart';
-import 'package:derry/src/helpers/read_yaml_file.dart';
+
+// Project imports:
+import 'package:derry/helpers.dart';
 
 /// read and return pubspec.yaml in current directory
 Future<YamlDocument> readPubspec() async {

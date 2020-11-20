@@ -1,4 +1,12 @@
-part of derry;
+// Dart imports:
+import 'dart:io';
+
+// Package imports:
+import 'package:args/command_runner.dart';
+
+// Project imports:
+import 'package:derry/helpers.dart';
+import 'package:derry/src/execute.dart';
 
 /// the `derry run` command
 /// which parses the arguments and execute the scripts in

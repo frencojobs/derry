@@ -1,0 +1,110 @@
+on:
+  push:
+    paths:
+      - "src/**.rs"
+
+name: Compile blobs
+
+jobs:
+  build_linux64:
+    name: Build for Linux 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Setup dart environment
+        uses: cedx/setup-dart@v2
+
+      - name: Install derry
+        run: pub global activate derry
+
+      - name: Install rust stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+
+      - run: pub global run derry build linux64
+
+      - uses: actions/upload-artifact@v2
+        with:
+          path: lib/src/blobs/executor_linux64.so
+
+  build_mac64:
+    name: Build for Mac 
+    runs-on: macos-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Setup dart environment
+        uses: cedx/setup-dart@v2
+
+      - name: Install derry
+        run: pub global activate derry
+
+      - name: Install rust stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+
+      - run: pub global run derry build mac64
+
+      - uses: actions/upload-artifact@v2
+        with:
+          path: lib/src/blobs/executor_mac64.dylib
+  
+  build_win64:
+    name: Build for Windows 
+    runs-on: windows-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Setup dart environment
+        uses: cedx/setup-dart@v2
+
+      - name: Install derry
+        run: pub global activate derry
+
+      - name: Install rust stable toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+
+      - run: pub global run derry build win64
+
+      - uses: actions/upload-artifact@v2
+        with:
+          path: lib/src/blobs/executor_win64.dll
+
+  make_pr:
+    name: Make a PR
+    runs-on: ubuntu-latest
+    needs:
+      - build_linux64
+      - build_mac64
+      - build_win64
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: artifact
+          path: lib/src/blobs
+
+      - run: git status
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with: 
+          branch: blobs
+          title: Blobs
+          commit-message: "automated: add blobs"

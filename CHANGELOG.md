@@ -1,3 +1,7 @@
+## 1.1.1
+
+- Format according to `dartfmt` to get better pub score
+
 ## 1.1.0
 
 - Scripts now return exit codes

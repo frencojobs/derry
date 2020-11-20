@@ -1,5 +1,6 @@
 test: pub run test
 generate: pub run build_runner build --delete-conflicting-outputs
+sort-imports: pub run import_sorter:main
 publish:
   - $generate
   - $test

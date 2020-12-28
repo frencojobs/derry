@@ -1,10 +1,11 @@
 on:
   workflow_dispatch:
+
   push:
     branches:
       - dev
     paths:
-      - "native/src/**.rs"
+      - native
 
 name: Compile blobs
 

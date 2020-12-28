@@ -14,10 +14,6 @@ import 'package:derry/src/execute.dart';
 /// - the package name, version, and the script will also be
 /// printed out as the info message
 class RunCommmand extends Command {
-  /// Indicates whether a command is an alias of
-  /// another command or not.
-  bool get alias => false;
-
   @override
   String get name => 'run';
 
@@ -47,14 +43,12 @@ class RunCommmand extends Command {
     final args = super.argParser.parse(parsed['args'] as Iterable<String>).rest;
     final extra = (parsed['extra'] as List).join(' ');
 
-    if (args.isEmpty && !alias) {
+    if (args.isEmpty) {
       stdout.writeln(super.usage);
 
       return 0;
     } else {
-      final arg =
-          alias ? '$name ${args.join(' ')}'.trim() : args.join(' ').trim();
-
+      final arg = args.join(' ').trim();
       final info = await loadInfo();
       final definitions = await loadDefinitions();
       final infoLine = '${info.name}@${info.version} $arg';

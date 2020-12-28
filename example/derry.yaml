@@ -30,3 +30,7 @@ nested: # example for nested scripts
 watch: pub run build_runner watch
 nested_subcommand:
   - $nested:foo
+# pre & post scripts
+prewow: echo prewow
+wow: echo wow
+postwow: echo postwow

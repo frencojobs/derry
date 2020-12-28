@@ -19,6 +19,51 @@ int execute(
   String extra = '',
   String infoLine,
 }) {
+  var hasPre = false, hasPost = false;
+
+  try {
+    search(definitions, 'pre$arg');
+    hasPre = true;
+  } on DerryError catch (_) {
+    // don't mind
+  }
+
+  try {
+    search(definitions, 'post$arg');
+    hasPost = true;
+  } on DerryError catch (_) {
+    // don't mind
+  }
+
+  if (hasPre) {
+    _execute(
+      definitions,
+      'pre$arg',
+      extra: extra,
+      infoLine: infoLine,
+    );
+  }
+
+  final output = _execute(
+    definitions,
+    arg,
+    extra: hasPre ? null : extra,
+    infoLine: hasPre ? null : infoLine,
+  );
+
+  if (hasPost) {
+    _execute(definitions, 'post$arg');
+  }
+
+  return output;
+}
+
+int _execute(
+  Map definitions,
+  String arg, {
+  String extra = '',
+  String infoLine,
+}) {
   final searchResult = search(definitions, arg);
 
   /// for incomplete calls for nested scripts
@@ -55,7 +100,7 @@ int execute(
             extra: sub['extra'],
           );
         } else {
-          // replace all \$ with $ but are not subcommands
+          // replace all \$ with $, they are not subcommands
           final unparsed = script.replaceAll('\\\$', '\$');
           exitCode = executor('$unparsed $extra');
         }

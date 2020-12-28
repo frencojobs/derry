@@ -1,11 +1,8 @@
-// Dart imports:
 import 'dart:io';
 
-// Package imports:
 import 'package:console/console.dart';
 import 'package:yaml/yaml.dart';
 
-// Project imports:
 import 'package:derry/error.dart';
 import 'package:derry/helpers.dart';
 import 'package:derry/models.dart';

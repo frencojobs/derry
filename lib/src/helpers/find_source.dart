@@ -1,12 +1,10 @@
-// Package imports:
 import 'package:yaml/yaml.dart';
 
-// Project imports:
 import 'package:derry/error.dart';
 import 'package:derry/helpers.dart';
 import 'package:derry/models.dart';
 
-/// find the source of the derry commands
+/// Finds the source of the derry config.
 Future<String> findSource() async {
   final pubspec = await readPubspec();
   final definitions = pubspec.contents.value['scripts'];

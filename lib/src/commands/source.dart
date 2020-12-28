@@ -1,23 +1,15 @@
-// Dart imports:
 import 'dart:io';
 
-// Package imports:
 import 'package:args/command_runner.dart';
 
-// Project imports:
 import 'package:derry/helpers.dart';
 
-/// the `derry source` command
+/// The `derry source` command
 /// which prints out the current config file location.
 ///
 /// It will throw an error of [ErrorType.dnf] if config doesn't exist.
 class SourceCommand extends Command {
-  @override
-  String get name => 'source';
-
-  @override
-  String get description => 'find the location of the derry config file';
-
+  /// Constructs a `SourceCommand`.
   SourceCommand() {
     super.argParser.addFlag(
           'absolute',
@@ -26,6 +18,12 @@ class SourceCommand extends Command {
           negatable: false,
         );
   }
+
+  @override
+  String get name => 'source';
+
+  @override
+  String get description => 'find the location of the derry config file';
 
   @override
   Future<void> run() async {

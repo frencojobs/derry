@@ -1,10 +1,9 @@
-// Package imports:
 import 'package:yaml/yaml.dart';
 
-// Project imports:
 import 'package:derry/helpers.dart';
 import 'package:derry/models.dart';
 
+/// Parses a definition into the [Definition] class.
 Definition parseDefinition(dynamic input) {
   if (input is YamlMap) {
     return Definition(

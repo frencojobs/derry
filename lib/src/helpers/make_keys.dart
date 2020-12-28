@@ -1,3 +1,4 @@
+/// Gets keys as a list from the definitions.
 List<String> makeKeys(dynamic input) {
   final result = [];
 

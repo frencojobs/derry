@@ -25,3 +25,6 @@ dev_dependencies:
   test: ^1.6.0
 
 scripts: derry.yaml
+
+import_sorter:
+  comments: false

@@ -1,12 +1,10 @@
-// Package imports:
 import 'package:yaml/yaml.dart';
 
-// Project imports:
 import 'package:derry/error.dart';
 import 'package:derry/helpers.dart';
 import 'package:derry/models.dart';
 
-/// load scripts from pubspec yaml content
+/// Loads scripts from `pubspec.yaml` content.
 Future<Map> loadDefinitions() async {
   final pubspec = await readPubspec();
   final definitions = pubspec.contents.value['scripts'];

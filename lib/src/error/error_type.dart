@@ -1,19 +1,20 @@
-/// Error Types
-///
-/// Types of error that can be handled.
+/// Types of error that can/will be handled by derry.
 enum ErrorType {
   /// [SNF] = Script Not Found, throw when a particular script is not found
   snf,
 
-  /// [DNF] = Definitions Not Found, throw when unable to locate definitions source
+  /// [DNF] = Definitions Not Found, throw when unable to locate
+  /// definitions source
 
   dnf,
 
-  /// [IET] = Incorrect Execution Type, throw when incorrect execution is configured
+  /// [IET] = Incorrect Execution Type, throw when incorrect execution
+  /// is configured
 
   iet,
 
-  /// [CPD] = Cannot Parse Definitions, throw when definitions are configured in incorrected format
+  /// [CPD] = Cannot Parse Definitions, throw when definitions are configured
+  /// in incorrected format
 
   cpd,
 
@@ -29,7 +30,8 @@ enum ErrorType {
 
   cct,
 
-  /// [PNS] = Platform Not Supported, throw when using on an unsupported platform
+  /// [PNS] = Platform Not Supported, throw when using on
+  /// an unsupported platform
 
   pns,
 }

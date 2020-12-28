@@ -1,10 +1,7 @@
-// Dart imports:
 import 'dart:io';
 
-// Package imports:
 import 'package:args/command_runner.dart';
 
-// Project imports:
 import 'package:derry/commands.dart';
 import 'package:derry/error.dart';
 import 'package:derry/models.dart';

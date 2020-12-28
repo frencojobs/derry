@@ -1,10 +1,9 @@
-// Package imports:
 import 'package:yaml/yaml.dart';
 
-// Project imports:
 import 'package:derry/error.dart';
 import 'package:derry/models.dart';
 
+/// Parses a list from yaml input.
 List<String> toList(dynamic input) {
   if (input is YamlList) {
     return input.toList().map((e) => e.toString()).toList();

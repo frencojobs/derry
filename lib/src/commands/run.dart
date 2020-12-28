@@ -1,14 +1,11 @@
-// Dart imports:
 import 'dart:io';
 
-// Package imports:
 import 'package:args/command_runner.dart';
 
-// Project imports:
 import 'package:derry/helpers.dart';
 import 'package:derry/src/execute.dart';
 
-/// the `derry run` command
+/// The `derry run` command
 /// which parses the arguments and execute the scripts in
 /// the executor using ffi.
 ///
@@ -17,6 +14,8 @@ import 'package:derry/src/execute.dart';
 /// - the package name, version, and the script will also be
 /// printed out as the info message
 class RunCommmand extends Command {
+  /// Indicates whether a command is an alias of
+  /// another command or not.
   bool get alias => false;
 
   @override
@@ -25,7 +24,7 @@ class RunCommmand extends Command {
   @override
   String get description => 'find the script definition and execute it';
 
-  Map<String, dynamic> parseExtras(List<String> args) {
+  Map<String, dynamic> _parseExtras(List<String> args) {
     final flag = args.contains('--');
 
     if (flag) {
@@ -44,7 +43,7 @@ class RunCommmand extends Command {
 
   @override
   Future<int> run() async {
-    final parsed = parseExtras(super.argResults.arguments);
+    final parsed = _parseExtras(super.argResults.arguments);
     final args = super.argParser.parse(parsed['args'] as Iterable<String>).rest;
     final extra = (parsed['extra'] as List).join(' ');
 

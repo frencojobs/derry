@@ -11,4 +11,4 @@ build/
 doc/api/
 
 # Cargo
-/target
+target

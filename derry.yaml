@@ -14,7 +14,7 @@ cargo_build:
 build:
   win64:
     - $cargo_build
-    - COPY native/target\release\executor.dll lib\src\blobs\executor_win64.dll
+    - COPY native\target\release\executor.dll lib\src\blobs\executor_win64.dll
   mac64:
     - $cargo_build
     - cp native/target/release/libexecutor.dylib lib/src/blobs/executor_mac64.dylib

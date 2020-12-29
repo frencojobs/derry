@@ -1,14 +1,11 @@
-// Dart imports:
 import 'dart:io';
 
-// Package imports:
 import 'package:args/command_runner.dart';
 import 'package:console/console.dart';
 
-// Project imports:
 import 'package:derry/helpers.dart';
 
-/// the `derry ls` command
+/// The `derry ls` command
 /// which will print a recursive tree representation of
 /// all the available scripts within the current config.
 ///
@@ -56,22 +53,26 @@ class ListCommand extends Command {
       final value = entry.value;
       final subcommands = mapping[entry.key];
 
-      stdout.writeln('${getPrefix(i, keys.length)} $value');
+      stdout.writeln('${_getPrefix(i, keys.length)} $value');
 
       for (final subEntry in subcommands.asMap().entries) {
         final j = subEntry.key;
         final subValue = format(
-          '{color.green}${subEntry.value.replaceAll('\\\$', '\$').split(':').join(' ')}{color.end}',
+          '{color.green}'
+          '${subEntry.value.replaceAll('\\\$', '\$').split(':').join(' ')}'
+          '{color.end}',
         );
 
         stdout.writeln(
-          '${i == keys.length - 1 ? ' ' : '│'}   ${getPrefix(j, subcommands.length)} $subValue',
+          '${i == keys.length - 1 ? ' ' : '│'}'
+          '   '
+          '${_getPrefix(j, subcommands.length)} $subValue',
         );
       }
     }
   }
 
-  String getPrefix(int current, int len) {
+  String _getPrefix(int current, int len) {
     return current == len - 1 ? '└──' : '├──';
   }
 }

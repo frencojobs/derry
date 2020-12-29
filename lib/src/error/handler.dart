@@ -1,15 +1,12 @@
-// Dart imports:
 import 'dart:io';
 
-// Package imports:
 import 'package:console/console.dart';
 import 'package:string_similarity/string_similarity.dart';
 
-// Project imports:
 import 'package:derry/error.dart';
 import 'package:derry/models.dart';
 
-/// Function to handle errors based on [ErrorType].
+/// Handles errors based on [ErrorType].
 void errorHandler(DerryError t) {
   final prefixer = format('derry {color.red}ERROR!{color.end}');
 
@@ -41,7 +38,9 @@ void errorHandler(DerryError t) {
     case ErrorType.iet:
       stderr.writeln('$prefixer Unable to parse definitions.');
       stderr.writeln(
-        '$prefixer The definitions are not correctly defined in the right format.',
+        '$prefixer The definitions are not correctly defined'
+        ' '
+        'in the right format.',
       );
       break;
     case ErrorType.pns:

@@ -1,8 +1,8 @@
-// Project imports:
 import 'package:derry/error.dart';
 import 'package:derry/helpers.dart';
 import 'package:derry/models.dart';
 
+/// Searches for a key in the definitions.
 dynamic search(Map data, String key) {
   var d = data;
   final current = StringBuffer();

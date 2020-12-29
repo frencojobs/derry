@@ -1,13 +1,10 @@
-on:
-  push:
-    paths:
-      - "src/**.rs"
+on: workflow_dispatch
 
 name: Compile blobs
 
 jobs:
   build_linux64:
-    name: Build for Linux 
+    name: Build for Linux
     runs-on: ubuntu-latest
     steps:
       - name: Checkout sources
@@ -33,7 +30,7 @@ jobs:
           path: lib/src/blobs/executor_linux64.so
 
   build_mac64:
-    name: Build for Mac 
+    name: Build for Mac
     runs-on: macos-latest
     steps:
       - name: Checkout sources
@@ -57,9 +54,9 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           path: lib/src/blobs/executor_mac64.dylib
-  
+
   build_win64:
-    name: Build for Windows 
+    name: Build for Windows
     runs-on: windows-latest
     steps:
       - name: Checkout sources
@@ -104,7 +101,7 @@ jobs:
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
-        with: 
+        with:
           branch: blobs
           title: Blobs
           commit-message: "automated: add blobs"

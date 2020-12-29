@@ -29,7 +29,7 @@ derry build
 
 ## Installation
 
-Install derry as a global dependency from [Pub](https://pub.dev) as follows.
+Install derry as a global dependency from [pub.dev](https://pub.dev) as follows.
 
 ```bash
 pub global activate derry
@@ -92,7 +92,6 @@ build:
 Scripts can be nested as the user needed. For example, you can use them to use different implementations of the build script based on operating system.
 
 ```yaml
-# derry.yaml
 build:
   windows:
     - echo 0 # do something
@@ -101,6 +100,20 @@ build:
 ```
 
 And you can use them by calling `derry build windows` on windows and `derry build mac` on macOS.
+
+**Pre and post scripts**
+
+With pre & post scripts, you can easily define a script to run before and after a specific script without hassling with references. Derry automatically understands them from the names.
+
+```yaml
+prepublish:
+  - cargo build && copy target blob
+  - pub run test
+publish:
+  - pub publish
+postpublish:
+  - rm -rf blob
+```
 
 **Configure execution type**
 

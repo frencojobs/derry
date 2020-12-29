@@ -1,3 +1,9 @@
+## 1.2.0
+
+- Enforce stricter linter rules and refactor according to it
+- Support `pre` & `post` scripts
+- Move native code into a separate directory
+
 ## 1.1.1
 
 - Format according to `dartfmt` to get better pub score

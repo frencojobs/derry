@@ -1,11 +1,8 @@
-// Dart imports:
 import 'dart:io';
 
-// Package imports:
 import 'package:console/console.dart';
 import 'package:yaml/yaml.dart';
 
-// Project imports:
 import 'package:derry/error.dart';
 import 'package:derry/helpers.dart';
 import 'package:derry/models.dart';
@@ -17,6 +14,51 @@ import 'package:derry/src/bindings/executor.dart';
 /// a `boolean` value to decide whether to print output
 /// or not, and a [String] to print before executing the script.
 int execute(
+  Map definitions,
+  String arg, {
+  String extra = '',
+  String infoLine,
+}) {
+  var hasPre = false, hasPost = false;
+
+  try {
+    search(definitions, 'pre$arg');
+    hasPre = true;
+  } on DerryError catch (_) {
+    // don't mind
+  }
+
+  try {
+    search(definitions, 'post$arg');
+    hasPost = true;
+  } on DerryError catch (_) {
+    // don't mind
+  }
+
+  if (hasPre) {
+    _execute(
+      definitions,
+      'pre$arg',
+      extra: extra,
+      infoLine: infoLine,
+    );
+  }
+
+  final output = _execute(
+    definitions,
+    arg,
+    extra: hasPre ? '' : extra,
+    infoLine: hasPre ? null : infoLine,
+  );
+
+  if (hasPost) {
+    _execute(definitions, 'post$arg');
+  }
+
+  return output;
+}
+
+int _execute(
   Map definitions,
   String arg, {
   String extra = '',
@@ -58,7 +100,7 @@ int execute(
             extra: sub['extra'],
           );
         } else {
-          // replace all \$ with $ but are not subcommands
+          // replace all \$ with $, they are not subcommands
           final unparsed = script.replaceAll('\\\$', '\$');
           exitCode = executor('$unparsed $extra');
         }

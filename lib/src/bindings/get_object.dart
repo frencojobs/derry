@@ -1,17 +1,18 @@
-// Dart imports:
 import 'dart:ffi' show IntPtr, sizeOf;
 import 'dart:io';
 
-// Project imports:
 import 'package:derry/error.dart';
 import 'package:derry/models.dart';
 
-// took this piece of code from dart/tflite_native
-/// supported operating systems with architectures
-const Set<String> supported = {'win64', 'linux64', 'mac64'};
+// This piece of code was actually taken from
+// dart/tflite_native
 
-/// get the file name of blob files based on os
-/// file name doesn't include directory paths
+/// Supported operating systems with architectures.
+const supported = {'win64', 'linux64', 'mac64'};
+
+/// Gets the file name of blob files based on os
+///
+/// File name doesn't contain directory paths.
 String getObject() {
   final architecture = sizeOf<IntPtr>() == 4 ? '32' : '64';
   String os, extension;

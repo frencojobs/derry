@@ -1,8 +1,7 @@
-// Project imports:
 import 'package:derry/helpers.dart';
 import 'package:derry/models.dart';
 
-/// load package info from pubspec yaml content
+/// Loads package information from `pubspec.yaml` content.
 Future<Info> loadInfo() async {
   final pubspec = await readPubspec();
   final name = pubspec.contents.value['name'] as String;

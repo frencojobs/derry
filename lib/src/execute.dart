@@ -47,7 +47,7 @@ int execute(
   final output = _execute(
     definitions,
     arg,
-    extra: hasPre ? null : extra,
+    extra: hasPre ? '' : extra,
     infoLine: hasPre ? null : infoLine,
   );
 

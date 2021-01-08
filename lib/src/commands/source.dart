@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
+import 'package:path/path.dart' as p;
 
 import 'package:derry/helpers.dart';
 
@@ -29,8 +30,8 @@ class SourceCommand extends Command {
   Future<void> run() async {
     final absolute = super.argResults['absolute'];
 
-    if (absolute != null) {
-      stdout.writeln(File(await findSource()).absolute.path);
+    if (absolute as bool) {
+      stdout.writeln(p.normalize(File(await findSource()).absolute.path));
     } else {
       stdout.writeln(await findSource());
     }

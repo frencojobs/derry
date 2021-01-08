@@ -1,3 +1,8 @@
+## 1.2.1
+
+- Normalize absolute paths for `derry source` command
+- Format old changelogs
+
 ## 1.2.0
 
 - Enforce stricter linter rules and refactor according to it
@@ -11,9 +16,9 @@
 ## 1.1.0
 
 - Scripts now return exit codes
-- Removed `--slient` or `-s` option from `run` command
+- Remove `--slient` or `-s` option from `run` command
 - Change info lines' styles
-- Reduced exported API elements to only commands and version
+- Reduce exported API elements to only commands and version
 
 ## 1.0.5
 
@@ -35,7 +40,7 @@
 
 ## 1.0.1
 
-- Formatted changelogs according to pub.dev
+- Format changelogs according to pub.dev
 
 ## 1.0.0
 
@@ -57,81 +62,81 @@
 ## 0.1.2
 
 - Now `run` scripts can be used without using the `run` keyword. For example, `derry test` can be used instead of `derry run test` without explicit implementations, for all scripts
-- Removed the old `build` and `test` alias implementations
+- Remove the old `build` and `test` alias implementations
 - The derry commands no longer print the current directory on the script execution
 
 ## 0.1.1+1
 
-- Updated the pub link in README.md from `http` to `https` to get better pub score
+- Update the pub link in README.md from `http` to `https` to get better pub score
 
 ## 0.1.1
 
-- Refactored ffi directory to bindings directory
-- Refactored usage lines to be all lowercase and with no period
-- Added `derry --version` option
+- Refactor ffi directory to bindings directory
+- Refactor usage lines to be all lowercase and with no period
+- Adde `derry --version` option
 
 ## 0.1.0
 
-- Added support for `derry source` command
+- Add support for `derry source` command
 
 ## 0.0.9
 
-- Added support for using subcommands with options/arguments/parameters
+- Add support for using subcommands with options/arguments/parameters
 
 ## 0.0.8+1
 
-- Fixed #20 `MultipleHandlers` Error caused by #12 fix
+- Fix #20 `MultipleHandlers` Error caused by #12 fix
 
 ## 0.0.8
 
-- Fixed #12 Ctrl-C Error
-- Added `-s` as abbrreviation for `--silent`
+- Fix #12 Ctrl-C Error
+- Add `-s` as abbrreviation for `--silent`
 
 ## 0.0.7+1
 
-- Fixed #14 error on not being able to use options caused by previous changes
+- Fix #14 error on not being able to use options caused by previous changes
 
 ## 0.0.7
 
-- Added support for nested scripts
-- Modified `Did you mean this?` check and `ls` commands to work well with nested scripts
+- Add support for nested scripts
+- Modify `Did you mean this?` check and `ls` commands to work well with nested scripts
 - Breaking changes on `Advanced Configuration` API for compatibility with nested scripts
 
 ## 0.0.6
 
-- Added `Did you mean this?` check by using `string-similarity` package
-- Fixed null infoLine error
-- Fixed command not found unhandled exceptions
+- Add `Did you mean this?` check by using `string-similarity` package
+- Fix null infoLine error
+- Fix command not found unhandled exceptions
 
 ## 0.0.5
 
-- Added `derry ls` command
-- Updated documentation
+- Add `derry ls` command
+- Updat documentation
 
 ## 0.0.4
 
-- Added support for `test` and `build` aliases
+- Add support for `test` and `build` aliases
 - Better and consistent error messages with an API
 
 ## 0.0.3+1
 
-- Modified README to work correctly on pub.dev
+- Modify README to work correctly on pub.dev
 
 ## 0.0.3
 
-- Added support for `--silent`
-- Refactored Rust source code
-- Started using derry for build
-- Modified documentation
+- Add support for `--silent`
+- Refactor Rust source code
+- Start using derry for build
+- Modify documentation
 
 ## 0.0.2
 
-- Added support for subcommands
+- Add support for subcommands
 
 ## 0.0.1
 
 - Initial version, scaffolded by Stagehand
-- Added support for list definitions
-- Added support for configurable execution type
-- Added support for win64, linux64, and (mac64)
-- Added tests for helpers
+- Add support for list definitions
+- Add support for configurable execution type
+- Add support for win64, linux64, and (mac64)
+- Add tests for helpers

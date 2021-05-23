@@ -2,12 +2,12 @@ import 'dart:cli' as cli;
 import 'dart:ffi' as ffi;
 import 'dart:isolate' show Isolate;
 
-import 'package:ffi/ffi.dart' show Utf8;
+import 'package:ffi/ffi.dart' show StringUtf8Pointer, Utf8;
 
 import 'package:derry/src/bindings/get_object.dart';
 
 // ignore: avoid_private_typedef_functions
-typedef _executor_fn = ffi.Int32 Function(ffi.Pointer<Utf8>);
+typedef _ExecutorFn = ffi.Int32 Function(ffi.Pointer<Utf8>);
 // ignore: avoid_private_typedef_functions
 typedef _Executor = int Function(ffi.Pointer<Utf8>);
 
@@ -21,9 +21,8 @@ int executor(String input) {
   final dylib = ffi.DynamicLibrary.open(objectFile);
 
   final executorPointer =
-      dylib.lookup<ffi.NativeFunction<_executor_fn>>('executor');
+      dylib.lookup<ffi.NativeFunction<_ExecutorFn>>('executor');
   final executorFunction = executorPointer.asFunction<_Executor>();
 
-  final script = Utf8.toUtf8(input).cast<Utf8>();
-  return executorFunction(script);
+  return executorFunction(input.toNativeUtf8());
 }

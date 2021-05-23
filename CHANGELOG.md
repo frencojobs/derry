@@ -1,3 +1,8 @@
+
+## 1.3.0
+
+- Update dependencies
+
 ## 1.2.1
 
 - Normalize absolute paths for `derry source` command

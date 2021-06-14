@@ -1,6 +1,6 @@
 name: derry
 description: A script manager to help you define script shortcuts and use them effortlessly, and performantly.
-version: 1.3.0
+version: 1.4.0
 repository: https://github.com/frencojobs/derry
 
 environment:

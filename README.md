@@ -119,8 +119,11 @@ postpublish:
 
 Note that in the list of scripts, executions will happen in separate processes, use `&&` to execute multiple scripts in the same process. Alternatively, you can also configure the `execution` value. To separate the configuration values from nested scripts, wrap the keys of the configurations with parenthesis as in `(execution)`.
 
+You can also add a string to `(description)` option, which can be useful when viewing through a list of available via `derry ls -d` command.
+
 ```yaml
 build:
+  (description): script to be called after every update to x.dart file
   (execution): once # multiple by default
   (scripts):
     - cat generated.txt

@@ -1,7 +1,7 @@
-
 ## 1.3.0
 
 - Update dependencies
+- Refactor code with organized imports and typedefs according to new formatter rules
 
 ## 1.2.1
 

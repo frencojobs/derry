@@ -1,7 +1,6 @@
-import 'package:yaml/yaml.dart';
-
 import 'package:derry/helpers.dart';
 import 'package:derry/models.dart';
+import 'package:yaml/yaml.dart';
 
 /// Parses a definition into the [Definition] class.
 Definition parseDefinition(dynamic input) {

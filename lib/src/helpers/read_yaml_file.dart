@@ -1,9 +1,8 @@
 import 'dart:io';
 
-import 'package:yaml/yaml.dart';
-
 import 'package:derry/error.dart';
 import 'package:derry/models.dart';
+import 'package:yaml/yaml.dart';
 
 /// Reads and returns a yaml document if exists.
 Future<YamlDocument> readYamlFile(String filePath) async {

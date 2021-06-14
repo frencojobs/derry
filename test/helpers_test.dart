@@ -1,12 +1,11 @@
 import 'dart:io';
 
-import 'package:test/test.dart';
-import 'package:yaml/yaml.dart';
-
 import 'package:derry/error.dart';
 import 'package:derry/helpers.dart';
 import 'package:derry/models.dart';
 import 'package:derry/version.dart';
+import 'package:test/test.dart';
+import 'package:yaml/yaml.dart';
 
 void main() {
   group('Are helpers working? Because ', () {

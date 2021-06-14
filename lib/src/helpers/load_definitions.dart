@@ -1,8 +1,7 @@
-import 'package:yaml/yaml.dart';
-
 import 'package:derry/error.dart';
 import 'package:derry/helpers.dart';
 import 'package:derry/models.dart';
+import 'package:yaml/yaml.dart';
 
 /// Loads scripts from `pubspec.yaml` content.
 Future<Map> loadDefinitions() async {

@@ -7,6 +7,7 @@ list:
   - echo done
 # example for advanved configurations
 run_once:
+  (description): "an example for `(execution): once` option usage"
   (execution): once
   (scripts):
     - echo test
@@ -34,3 +35,7 @@ nested_subcommand:
 prewow: echo prewow
 wow: echo wow
 postwow: echo postwow
+description:
+  (description): example usage for description option
+  (scripts):
+    -

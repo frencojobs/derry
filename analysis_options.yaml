@@ -4,7 +4,7 @@ linter:
   rules:
     always_put_required_named_parameters_first: false
     avoid_classes_with_only_static_members: false
-    sort_constructors_first: true
+    sort_constructors_first: false
     prefer_single_quotes: true
     lines_longer_than_80_chars: true
     use_setters_to_change_properties: false

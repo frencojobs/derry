@@ -1,8 +1,7 @@
 import 'dart:io';
 
-import 'package:yaml/yaml.dart';
-
 import 'package:derry/helpers.dart';
+import 'package:yaml/yaml.dart';
 
 /// Reads and returns the content of `pubspec.yaml` in
 /// current directory.

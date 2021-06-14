@@ -1,7 +1,6 @@
-import 'package:yaml/yaml.dart';
-
 import 'package:derry/error.dart';
 import 'package:derry/models.dart';
+import 'package:yaml/yaml.dart';
 
 /// Parses a list from yaml input.
 List<String> toList(dynamic input) {

@@ -1,10 +1,9 @@
 import 'dart:io';
 
 import 'package:console/console.dart';
-import 'package:string_similarity/string_similarity.dart';
-
 import 'package:derry/error.dart';
 import 'package:derry/models.dart';
+import 'package:string_similarity/string_similarity.dart';
 
 /// Handles errors based on [ErrorType].
 void errorHandler(DerryError t) {

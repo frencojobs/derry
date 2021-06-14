@@ -1,3 +1,7 @@
+## 1.4.1
+
+- Add description option usage to README documentation
+
 ## 1.4.0
 
 - Add description option which can now be used by `derry ls -d` command

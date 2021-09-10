@@ -1,3 +1,7 @@
+## 1.4.3
+
+- Bump version to correct `derry --version`
+
 ## 1.4.2
 
 - Fix a bug by correctly passing extra arguments to parsed subcommands

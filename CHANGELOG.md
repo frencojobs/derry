@@ -1,3 +1,11 @@
+## 1.4.3
+
+- Bump version to correct `derry --version`
+
+## 1.4.2
+
+- Fix a bug by correctly passing extra arguments to parsed subcommands
+
 ## 1.4.1
 
 - Add description option usage to README documentation

@@ -86,7 +86,7 @@ int _execute(
   switch (definition.execution) {
     case 'once':
       final script = definition.scripts.join(' && ');
-      return executor('$script $extra');
+      return executor([script, extra].map((x) => x.trim()).join(' '));
       break;
     case 'multiple':
       var exitCode = 0;
@@ -96,12 +96,12 @@ int _execute(
           exitCode = execute(
             definitions,
             sub['command'],
-            extra: sub['extra'],
+            extra: [sub['extra'], extra].map((x) => x.trim()).join(' '),
           );
         } else {
           // replace all \$ with $, they are not subcommands
           final unparsed = script.replaceAll('\\\$', '\$');
-          exitCode = executor('$unparsed $extra');
+          exitCode = executor([unparsed, extra].map((x) => x.trim()).join(' '));
         }
       }
       return exitCode;

@@ -27,7 +27,7 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          path: lib/src/blobs/executor_linux64.so
+          path: lib/src/blobs/linux_x64.so
 
   build_mac64:
     name: Build for Mac
@@ -53,7 +53,7 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          path: lib/src/blobs/executor_mac64.dylib
+          path: lib/src/blobs/macos_x64.dylib
 
   build_win64:
     name: Build for Windows
@@ -79,7 +79,7 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          path: lib/src/blobs/executor_win64.dll
+          path: lib/src/blobs/windows_x64.dll
 
   make_pr:
     name: Make a PR
@@ -104,4 +104,4 @@ jobs:
         with:
           branch: blobs
           title: Blobs
-          commit-message: "automated: add blobs"
+          commit-message: "ci: add blobs"

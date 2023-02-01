@@ -1,22 +1,23 @@
-test: pub run test
-generate: pub run build_runner build --delete-conflicting-outputs
+test: dart run test
+generate: dart run build_runner build --delete-conflicting-outputs
+
 publish:
   - $generate
   - $test
-  - pub publish --dry-run
-cargo_build:
-  (execution): once
-  (scripts):
-    - cd native
-    - cargo build --release
-    - cd ../
+  - dart pub publish --dry-run
+
+cargo_build: >
+  cd native &&
+  cargo build --release &&
+  cd ../
+
 build:
-  win64:
+  windows-x64:
     - $cargo_build
-    - COPY native\target\release\executor.dll lib\src\blobs\executor_win64.dll
-  mac64:
+    - COPY native\target\release\derry.dll lib\src\blobs\windows_x64.dll
+  macos-x64:
     - $cargo_build
-    - cp native/target/release/libexecutor.dylib lib/src/blobs/executor_mac64.dylib
-  linux64:
+    - cp native/target/release/libderry.dylib lib/src/blobs/macos_x64.dylib
+  linux-x64:
     - $cargo_build
-    - cp native/target/release/libexecutor.so lib/src/blobs/executor_linux64.so
+    - cp native/target/release/libderry.so lib/src/blobs/linux_x64.so

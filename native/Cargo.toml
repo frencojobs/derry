@@ -1,14 +1,21 @@
 [package]
-name = "executor"
+name = "derry"
 version = "0.1.0"
-authors = ["frencojobs <frenco.willian@gmail.com>"]
-edition = "2018"
+authors = ["Frenco <hey@frenco.dev>"]
+edition = "2021"
+
+[profile.release]
+strip = true      # Automatically strip symbols from the binary.
+opt-level = "z"   # Optimize for size.
+lto = true
+codegen-units = 1
+panic = "abort"
 
 [lib]
-name = "executor"
-crate-type = ["cdylib"] # dynamic library
+name = "derry"
+crate-type = ["cdylib"]
 
 [dependencies]
-ctrlc = "3.1.4"
-shared_child = "0.3.4"
-colored = "2"
+ctrlc = "3.2.4"
+shared_child = "1.0.0"
+colored = "2.0.0"

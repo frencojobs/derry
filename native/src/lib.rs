@@ -1,6 +1,3 @@
-extern crate colored;
-extern crate ctrlc;
-extern crate shared_child;
 use colored::*;
 use shared_child::SharedChild;
 use std::ffi::CStr;
@@ -9,16 +6,13 @@ use std::process::Command;
 use std::sync::Arc;
 
 #[no_mangle]
-pub extern "C" fn executor(ptr: *const c_char) -> i32 {
+pub extern "C" fn run_script(ptr: *const c_char) -> i32 {
     let c_str = unsafe { CStr::from_ptr(ptr) };
     let script: String = String::from(c_str.to_str().unwrap());
 
     println!("$ {}", script.dimmed());
     println!("");
-    executor_fn(&script)
-}
 
-fn executor_fn(script: &String) -> i32 {
     #[cfg(target_os = "windows")]
     let shell: &str = "cmd";
 
@@ -47,9 +41,5 @@ fn executor_fn(script: &String) -> i32 {
     // .expect("Rust: Error setting interrupt handler!");
 
     let status = child_arc.wait().expect("Rust: Process can't be awaited");
-
-    match status.code() {
-        Some(code) => code,
-        None => 1,
-    }
+    status.code().unwrap_or(1)
 }

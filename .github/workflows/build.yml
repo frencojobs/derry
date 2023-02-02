@@ -23,7 +23,7 @@ jobs:
           toolchain: stable
           override: true
 
-      - run: dart pub global run derry build linux_x64
+      - run: dart pub global run derry build linux-x64
 
       - uses: actions/upload-artifact@v2
         with:

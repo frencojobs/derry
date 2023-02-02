@@ -14,7 +14,7 @@ jobs:
         uses: cedx/setup-dart@v2
 
       - name: Install derry
-        run: pub global activate derry
+        run: dart pub global activate derry
 
       - name: Install rust stable toolchain
         uses: actions-rs/toolchain@v1
@@ -23,7 +23,7 @@ jobs:
           toolchain: stable
           override: true
 
-      - run: pub global run derry build linux64
+      - run: dart pub global run derry build linux_x64
 
       - uses: actions/upload-artifact@v2
         with:
@@ -41,7 +41,7 @@ jobs:
   #       uses: cedx/setup-dart@v2
 
   #     - name: Install derry
-  #       run: pub global activate derry
+  #       run: dart pub global activate derry
 
   #     - name: Install rust stable toolchain
   #       uses: actions-rs/toolchain@v1
@@ -50,7 +50,7 @@ jobs:
   #         toolchain: stable
   #         override: true
 
-  #     - run: pub global run derry build mac64
+  #     - run: dart pub global run derry build macos-arm64
 
   #     - uses: actions/upload-artifact@v2
   #       with:
@@ -67,7 +67,7 @@ jobs:
         uses: cedx/setup-dart@v2
 
       - name: Install derry
-        run: pub global activate derry
+        run: dart pub global activate derry
 
       - name: Install rust stable toolchain
         uses: actions-rs/toolchain@v1
@@ -76,7 +76,7 @@ jobs:
           toolchain: stable
           override: true
 
-      - run: pub global run derry build mac64
+      - run: dart pub global run derry build macos-x64
 
       - uses: actions/upload-artifact@v2
         with:
@@ -93,7 +93,7 @@ jobs:
         uses: cedx/setup-dart@v2
 
       - name: Install derry
-        run: pub global activate derry
+        run: dart pub global activate derry
 
       - name: Install rust stable toolchain
         uses: actions-rs/toolchain@v1
@@ -102,7 +102,7 @@ jobs:
           toolchain: stable
           override: true
 
-      - run: pub global run derry build win64
+      - run: dart pub global run derry build windows-x64
 
       - uses: actions/upload-artifact@v2
         with:

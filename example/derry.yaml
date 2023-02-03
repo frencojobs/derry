@@ -27,7 +27,7 @@ nested: # example for nested scripts
     - echo bar
   bar:
     - echo baz
-watch: dart pub run build_runner watch
+watch: dart run build_runner watch
 nested_references:
   - $nested:foo
 # pre & post scripts

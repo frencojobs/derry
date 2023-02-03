@@ -1,3 +1,14 @@
+## 1.5.0
+
+- Add support for M1 Macs
+- Blob sizes are now much smaller
+- Opted-in to sound null-safety
+- Rewrite most of the existing codes to be more concise and clearer, and also more performant by reducing io reads as much as possible and by caching a lot
+- Use meaningful error codes with better error messages
+- Rename `subcommands` to `references`
+- Remove "execution type" which is useless and confusing
+- Publishing is now done via GitHub Actions
+
 ## 1.4.3
 
 - Bump version to correct `derry --version`

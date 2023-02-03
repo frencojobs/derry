@@ -30,7 +30,7 @@ void handleError(DerryError e) {
 
     case ErrorCode.invalidScript:
       final scriptRun = e.body['script'] as String;
-      final paths = e.body['paths'] as List<String>;
+      final paths = e.body['paths'] as List<String>? ?? [];
       final nestedScripts = paths.where((path) => path.startsWith('$scriptRun ')).toList();
 
       if (nestedScripts.isNotEmpty) {

@@ -57,6 +57,15 @@ class ScriptsRegistry {
         );
       }
 
+      // for when script is not a type we want
+      if (scriptFound is! Map && scriptFound is! List && scriptFound is! String) {
+        throw DerryError(
+          type: ErrorCode.invalidScript,
+          body: {'script': scriptString},
+        );
+      }
+
+      // for when script is a map
       if (scriptFound is Map) {
         final scripts = scriptFound[scriptsDefinitionKey];
         final validity = scripts != null && (scripts is List || scripts is String);

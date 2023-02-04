@@ -5,15 +5,14 @@ ping: ping google.com && echo ok # example that stdout is served with stream
 list:
   - echo test
   - echo done
-# example for advanved configurations
-run_once:
-  (description): "an example for `(execution): once` option usage"
-  (execution): once
-  (scripts):
-    - echo test
-    - "false"
-    - echo "this wont be called"
-# example for subcommands
+# example for advanced configurations
+multiline:
+  (description): "an example for `multiline` scripts usage"
+  (scripts): >
+    echo test &&
+    "false" &&
+    echo "this wont be called"
+# example for references
 prep:
   - echo step 1
   - echo step 2
@@ -28,8 +27,8 @@ nested: # example for nested scripts
     - echo bar
   bar:
     - echo baz
-watch: pub run build_runner watch
-nested_subcommand:
+watch: dart run build_runner watch
+nested_references:
   - $nested:foo
 # pre & post scripts
 prewow: echo prewow

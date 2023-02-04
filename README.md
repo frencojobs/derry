@@ -9,14 +9,14 @@ Derry helps you define shortcut scripts, and save you from having to type very l
 Instead of running this every time,
 
 ```bash
-pub run build_runner build --delete-conflicting-outputs
+dart run build_runner build --delete-conflicting-outputs
 ```
 
 Add this to `pubspec.yaml`,
 
 ```yaml
 scripts:
-  build: pub run build_runner build --delete-conflicting-outputs
+  build: dart run build_runner build --delete-conflicting-outputs
 ```
 
 and run
@@ -29,10 +29,10 @@ derry build
 
 ## Installation
 
-Install derry as a global dependency from [pub.dev](https://pub.dev) as follows.
+Install derry as a global dependency from [pub.dev](https://pub.dev) like this.
 
 ```bash
-pub global activate derry
+dart pub global activate derry
 ```
 
 Then use derry to run a command from the current dart/flutter project.
@@ -45,11 +45,11 @@ derry [script]
 
 ## Usage
 
-When called, derry will look for a `pubspec.yaml` file in the current directory, and will throw an error if not exist. The scripts can be declared within the `scripts` node of the `pubspec.yaml` file.
+When called, derry will look for a `pubspec.yaml` file in the current directory, and will throw an error if it doesn't exist. The scripts can be declared within the `scripts` node of the `pubspec.yaml` file.
 
 ```yaml
 scripts:
-  build: pub run build_runner build
+  build: dart run build_runner build
 ```
 
 ```bash
@@ -73,7 +73,7 @@ scripts: derry.yaml
 
 ```yaml
 # derry.yaml
-build: pub run build_runner build
+build: dart run build_runner build
 ```
 
 **Use scripts as List**
@@ -82,9 +82,9 @@ A script can either be a single string or a list of strings. If it is a list, th
 
 ```yaml
 build:
-  - pub run test
+  - dart test
   - echo "test completed"
-  - pub run build_runner build
+  - dart run build_runner build
 ```
 
 **Nested scripts**
@@ -108,37 +108,45 @@ With pre & post scripts, you can easily define a script to run before and after 
 ```yaml
 prepublish:
   - cargo build && copy target blob
-  - pub run test
+  - dart test
 publish:
-  - pub publish
+  - dart pub publish
 postpublish:
   - rm -rf blob
 ```
 
-**Configure execution type**
+**Configure script descriptions**
 
-Note that in the list of scripts, executions will happen in separate processes, use `&&` to execute multiple scripts in the same process. Alternatively, you can also configure the `execution` value. To separate the configuration values from nested scripts, wrap the keys of the configurations with parenthesis as in `(execution)`.
-
-You can also add a string to `(description)` option, which can be useful when viewing through a list of available via `derry ls -d` command.
+You can add a string to `(description)` option, which can be useful when viewing through a list of available via `derry ls -d` command. When you are using `(description)` field, you must use `(script)` field to define scripts.
 
 ```yaml
 build:
   (description): script to be called after every update to x.dart file
-  (execution): once # multiple by default
   (scripts):
     - cat generated.txt
-    - pub run build_runner build # won't be called if generated.txt does not exist
+    - dart run build_runner build
 ```
 
-This will be the same as using `&&` but it saved the user from having very long lines of scripts.
+**Configure multiline scripts**
 
-**Use subcommands**
+Note that in the list of scripts, executions will happen in separate processes. You can use `&&` to execute multiple scripts in the same process.
 
-When defining scripts, the user can also define subcommands. Subcommands are references to commands/scripts that won't be executed with a separate derry process. For example,
+```yaml
+# > or | can be used to define multiline strings, this is a standard YAML syntax
+build: >
+  cat generated.txt &&
+  dart run build_runner build
+
+# the second line won't be called if generated.txt does not exist
+```
+
+**Use references**
+
+When defining scripts, you can reference to other scripts via `$` syntax. These references to scripts won't be executed with a separate derry process. For example,
 
 ```yaml
 test:
-  - pub run test
+  - dart run test
   - echo "test completed"
 build:
   - $test # instead of using derry test
@@ -148,19 +156,19 @@ generate:
   env:
     - echo env
 release:
-  - $generate:env # use nested subcommands
+  - $generate:env # use nested references via :
   - $build
 ```
 
-`derry test` will spawn a new derry process to execute, while subcommands are not, reducing the time took to run dart code, and spawn that process.
-But note that subcommands will take a whole line of script. For example, you have to give a separate line for a subcommand, you can't use them together with other scripts or sandwiched.
+`derry test` will spawn a new derry process to execute, while references won't, reducing the time took to run dart code, and spawn that process.
+But note that references will take a whole line of script. For example, you have to give a separate line for a subcommand, you can't use them together with other scripts or sandwiched in a string.
 
 **List available scripts**
 
 Use this command to see what scripts are available in the current configuration.
 
 ```bash
-derry ls
+derry ls # --description or -d to output descriptions
 ```
 
 **Check the location of the derry scripts**
@@ -174,24 +182,18 @@ derry source # --absolute or -a to show absolute path
 **Upgrade derry**
 
 ```bash
-pub global activate derry # or
-derry upgrade # will run `pub global activate derry`
+dart pub global activate derry # or
+derry upgrade # will run `dart pub global activate derry`
 ```
 
 <br>
 
 ## Why & How
 
-Honestly, I needed it. It was easy to make, though I had a hard time implementing the script execution. Since Dart's `Process` isn't good at executing system commands, I used Rust with the help of _Foreign Function Interfaces_. For execution, currently `cmd` is used for Windows and `bash` is used for Linux and Mac. I know that's not optimal and I'm still looking for a way to allow users to use the current shell for executions.
+Honestly, I needed it. It was easy to make, though I had a hard time implementing the script execution. Since Dart's `Process` isn't good at executing system commands, I used Rust with the help of _Foreign Function Interfaces_. For execution, currently `cmd` is used for Windows and `bash` is used for Linux and Mac.
 
 <br>
 
 ## Currently Supported Platforms
 
 64bit Linux, Windows, and Mac are currently supported.
-
-<br>
-
-## License
-
-MIT &copy; Frenco Jobs

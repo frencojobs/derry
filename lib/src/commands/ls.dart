@@ -1,8 +1,19 @@
-import 'dart:io';
+import 'dart:io' show stdout;
 
 import 'package:args/command_runner.dart';
-import 'package:console/console.dart';
-import 'package:derry/helpers.dart';
+import 'package:derry/utils.dart';
+import 'package:tint/tint.dart';
+
+/// Returns length of the longest string in a list.
+int _getLongestStringLength(List<String> strings) {
+  final sortedList = strings.map((str) => str.length).toList()..sort();
+  return sortedList.last;
+}
+
+/// Returns the path prefix to display in a tree.
+String _getPrefix(int current, int len) {
+  return current == len - 1 ? '└──' : '├──';
+}
 
 /// The `derry ls` command
 /// which will print a recursive tree representation of
@@ -11,100 +22,78 @@ import 'package:derry/helpers.dart';
 /// Notes:
 ///
 /// - the name & version of the package by the config will also be printed out
-/// - subcommands will starts with an `$` and will have a different color
+/// - references will starts with an `$` and will have a different color
 class ListCommand extends Command {
   ListCommand() {
     super.argParser.addFlag(
           'description',
           abbr: 'd',
-          help: 'determine whether to show descriptions or not',
+          help: 'whether to show descriptions or not',
           negatable: false,
         );
   }
 
   @override
-  String get description => 'list available scripts in the current config';
-
-  @override
   String get name => 'ls';
 
   @override
+  String get description => 'list available scripts in the current config';
+
+  @override
   Future<void> run() async {
-    final info = await loadInfo();
-    final infoLine = '+ ${info.name}@${info.version}';
-    final definitions = await loadDefinitions();
-    final keys = makeKeys(definitions)..sort();
-    final showDescriptions = super.argResults['description'];
+    final argResults = super.argResults!;
+    final showDescriptions = argResults['description'] as bool;
 
-    final baseMap = keys.asMap().entries.map(
-          (entry) => MapEntry(
-            entry.key,
-            parseDefinition(search(definitions, entry.value)),
-          ),
-        );
+    final pubspec = Pubspec();
+    final info = await pubspec.getInfo();
+    final scripts = await pubspec.getScripts();
 
-    final _valueLengths = keys
-        .asMap()
-        .entries
-        .map(
-          (v) => v.value.length,
-        )
-        .toList()
-          ..sort();
-    final longestValueLength = _valueLengths.last;
+    final registry = ScriptsRegistry(scripts);
+    final paths = registry.getPaths()..sort();
 
-    final subcommandMap = Map.fromEntries(baseMap.map(
-      (entry) => MapEntry(
-        entry.key,
-        entry.value.scripts.where((s) => s.startsWith('\$')).toList(),
-      ),
-    ));
+    final definitions = paths.map((path) => registry.getDefinition(path)).toList();
+    final descriptions = definitions.map((def) => def.description).toList();
+    final references =
+        definitions.map((def) => def.scripts.where((s) => s.startsWith(referencePrefix)).toList()).toList();
 
-    final descriptionMap = Map.fromEntries(baseMap.map(
-      (entry) => MapEntry(
-        entry.key,
-        entry.value.description,
-      ),
-    ));
+    final buffer = StringBuffer();
 
-    stdout.writeln(infoLine);
-    stdout.writeln('│');
+    buffer.writeln('+ $info');
+    buffer.writeln('│');
 
-    for (final entry in keys.asMap().entries) {
-      final i = entry.key;
-      final value = entry.value;
-      final subcommands = subcommandMap[i];
+    final longestScriptLength = _getLongestStringLength(paths);
 
-      final description = descriptionMap[i];
-      final desc = showDescriptions as bool && description.isNotEmpty
-          ? format(
-              '{color.gray}'
-              '${''.padLeft(longestValueLength + 4 - value.length)} - '
-              '$description'
-              '{color.end}',
-            )
+    for (final pathEntry in paths.asMap().entries) {
+      final pathIndex = pathEntry.key;
+      final path = pathEntry.value;
+
+      final description = descriptions[pathIndex];
+      final refs = references[pathIndex];
+
+      final formattedDescription = showDescriptions && description != null
+          ? '${''.padLeft(longestScriptLength + 4 - path.length)} - $description'.gray()
           : '';
 
-      stdout.writeln('${_getPrefix(i, keys.length)} $value $desc');
+      buffer.writeln('${_getPrefix(pathIndex, paths.length)} $path $formattedDescription');
 
-      for (final subEntry in subcommands.asMap().entries) {
-        final j = subEntry.key;
-        final subValue = format(
-          '{color.green}'
-          '${subEntry.value.replaceAll('\\\$', '\$').split(':').join(' ')}'
-          '{color.end}',
-        );
+      for (final refEntry in refs.asMap().entries) {
+        final referenceIndex = refEntry.key;
+        final reference = refEntry.value;
 
-        stdout.writeln(
-          '${i == keys.length - 1 ? ' ' : '│'}'
+        final formattedReference = reference
+            .replaceAll('\\$referencePrefix', referencePrefix)
+            .split(referenceNestingDelimiter)
+            .join(' ')
+            .green();
+
+        buffer.writeln(
+          '${pathIndex == paths.length - 1 ? ' ' : '│'}'
           '   '
-          '${_getPrefix(j, subcommands.length)} $subValue',
+          '${_getPrefix(referenceIndex, refs.length)} $formattedReference',
         );
       }
     }
-  }
 
-  String _getPrefix(int current, int len) {
-    return current == len - 1 ? '└──' : '├──';
+    stdout.writeln(buffer.toString());
   }
 }

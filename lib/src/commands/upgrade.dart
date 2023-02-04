@@ -1,14 +1,16 @@
-import 'package:args/command_runner.dart';
+import 'dart:io' show stdout;
 
-import 'package:derry/src/execute.dart';
+import 'package:args/command_runner.dart';
+import 'package:derry/utils.dart';
 import 'package:derry/version.dart';
+import 'package:tint/tint.dart';
 
 /// The `derry upgrade` command
 /// which will attempt to run the pub command to
 /// upgrade the derry package itself.
 ///
 /// It's an equivalent of executing the
-/// `pub global activate derry` in the derry executor.
+/// `dart run pub global activate derry` by yourself.
 class UpgradeCommand extends Command {
   @override
   String get name => 'upgrade';
@@ -18,14 +20,12 @@ class UpgradeCommand extends Command {
 
   @override
   Future<void> run() async {
-    {
-      const infoLine = '> derry@$packageVersion upgrade';
+    const info = Info(name: 'derry', version: packageVersion);
+    final registry = ScriptsRegistry({
+      'upgrade': 'dart run pub global activate derry',
+    });
 
-      execute(
-        {'upgrade': 'pub global activate derry'},
-        'upgrade',
-        infoLine: infoLine,
-      );
-    }
+    stdout.writeln('> $info upgrade'.bold());
+    registry.runScript('upgrade');
   }
 }

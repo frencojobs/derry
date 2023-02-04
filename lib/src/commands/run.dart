@@ -1,9 +1,9 @@
-import 'dart:io';
+import 'dart:io' show stdout;
 
 import 'package:args/command_runner.dart';
-
-import 'package:derry/helpers.dart';
-import 'package:derry/src/execute.dart';
+import 'package:derry/src/utils/pubspec.dart';
+import 'package:derry/src/utils/scripts_registry.dart';
+import 'package:tint/tint.dart';
 
 /// The `derry run` command
 /// which parses the arguments and execute the scripts in
@@ -39,26 +39,26 @@ class RunCommmand extends Command {
 
   @override
   Future<int> run() async {
-    final parsed = _parseExtras(super.argResults.arguments);
+    final argResults = super.argResults!;
+
+    final parsed = _parseExtras(argResults.arguments);
     final args = super.argParser.parse(parsed['args'] as Iterable<String>).rest;
     final extra = (parsed['extra'] as List).join(' ');
 
     if (args.isEmpty) {
       stdout.writeln(super.usage);
-
       return 0;
     } else {
       final arg = args.join(' ').trim();
-      final info = await loadInfo();
-      final definitions = await loadDefinitions();
-      final infoLine = '${info.name}@${info.version} $arg';
 
-      return execute(
-        definitions,
-        arg,
-        extra: extra,
-        infoLine: infoLine,
-      );
+      final pubspec = Pubspec();
+      final info = await pubspec.getInfo();
+      final scripts = await pubspec.getScripts();
+
+      final registry = ScriptsRegistry(scripts);
+
+      stdout.writeln('> $info $arg'.bold());
+      return registry.runScript(arg, extra: extra);
     }
   }
 }

@@ -1,1 +1,1 @@
-export 'package:derry/src/version.dart';
+export 'src/version.dart';

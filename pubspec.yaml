@@ -11,7 +11,7 @@ executables:
 
 dependencies:
   args: ^2.3.2
-  collection: ^1.17.1
+  collection: ^1.17.0
   console: ^4.1.0
   equatable: ^2.0.5
   ffi: ^2.0.1

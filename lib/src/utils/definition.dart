@@ -1,4 +1,7 @@
+import 'package:derry/error.dart';
 import 'package:equatable/equatable.dart';
+
+import 'os.dart';
 
 /// Key used to define script description.
 const String descriptionDefinitionKey = '(description)';
@@ -10,7 +13,19 @@ const String scriptsDefinitionKey = '(scripts)';
 ///
 /// Can accept a `List` or a `String`.
 List<String> _toStringList(dynamic input) {
-  if (input is List) return input.toList().map((e) => e.toString()).toList();
+  if (input is List) {
+    return input.toList().map((e) => e.toString()).toList();
+  }
+  if (input is Map) {
+    final scriptsForCurrentOs = <String>[];
+    for (final entry in input.entries) {
+      if (OS.fromString(entry.key as String).matchesCurrentOS()) {
+        scriptsForCurrentOs.addAll(_toStringList(entry.value));
+        break;
+      }
+    }
+    return scriptsForCurrentOs;
+  }
   return [input as String];
 }
 

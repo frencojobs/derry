@@ -68,7 +68,7 @@ class ScriptsRegistry {
       // for when script is a map
       if (scriptFound is Map) {
         final scripts = scriptFound[scriptsDefinitionKey];
-        final validity = scripts != null && (scripts is List || scripts is String);
+        final validity = scripts != null && (scripts is List || scripts is String || scripts is Map);
 
         if (!validity) {
           throw DerryError(

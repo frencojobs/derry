@@ -32,4 +32,7 @@ enum ErrorCode {
 
   /// throw when a yaml file is not a map
   invalidYamlMap,
+
+  /// throw when an operating system in the yaml file is not supported
+  invalidOs
 }

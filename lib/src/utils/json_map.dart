@@ -1,3 +1,5 @@
+import '../../utils.dart';
+
 /// Json serializable map.
 typedef JsonMap = Map<String, dynamic>;
 
@@ -15,7 +17,7 @@ extension JsonMapExtension on JsonMap {
     final self = this;
     final result = <String>[];
     for (final k in self.keys) {
-      if (self[k] is JsonMap) {
+      if (self[k] is JsonMap && k != scriptsDefinitionKey) {
         result.addAll((self[k] as JsonMap).getPaths().map((v) => '$k $v'));
       } else if (RegExp(r'\(\w+\)').matchAsPrefix(k) != null) {
         result.add('');

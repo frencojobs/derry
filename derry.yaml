@@ -24,3 +24,19 @@ build:
   windows-x64:
     - $cargo_build
     - COPY native\target\release\derry.dll lib\src\blobs\windows_x64.dll
+
+
+test_desc:
+  (description): test
+  (scripts):
+    - echo 0
+
+test_os:
+  (description): test os specific scripts
+  (scripts):
+      (windows):
+        - echo 'windows'
+      (linux):
+        - echo 'linux'
+      (macos):
+        - echo 'macos'

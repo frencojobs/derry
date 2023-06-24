@@ -34,6 +34,19 @@ void main() {
         ),
       ),
     );
+
+    expect(
+      Definition.from(const {
+        '(scripts)': {
+          '(default)': 'echo "any os"',
+        },
+      }),
+      equals(
+        const Definition(
+          scripts: ['echo "any os"'],
+        ),
+      ),
+    );
   });
 
   test("Info's toString should work", () {
@@ -150,7 +163,8 @@ void main() {
 
         // filePath
         when(mockCurrentDirectory.path).thenReturn("current-directory-path");
-        expect(Pubspec.filePath, equals(path.join("current-directory-path", pubspecFileName)));
+        expect(Pubspec.filePath,
+            equals(path.join("current-directory-path", pubspecFileName)));
 
         // content
         const mockPubspecContent = """
@@ -158,7 +172,8 @@ name: test
 version: 0.0.0""";
         const mockPubspecMap = {"name": "test", "version": "0.0.0"};
         when(mockFile.exists()).thenAnswer((_) => Future.value(true));
-        when(mockFile.readAsString()).thenAnswer((_) => Future.value(mockPubspecContent));
+        when(mockFile.readAsString())
+            .thenAnswer((_) => Future.value(mockPubspecContent));
 
         expect(Pubspec.content, equals(null));
         expect(
@@ -236,7 +251,8 @@ c:
           "c": ["d", "e"]
         };
         when(mockFile.exists()).thenAnswer((_) => Future.value(true));
-        when(mockFile.readAsString()).thenAnswer((_) => Future.value(mockScriptsFile));
+        when(mockFile.readAsString())
+            .thenAnswer((_) => Future.value(mockScriptsFile));
 
         expect(await pubspec.getScripts(), equals(mockScriptsMap));
         expect(Pubspec.scripts, equals(mockScriptsMap));

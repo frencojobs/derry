@@ -36,7 +36,5 @@ test_os:
   (scripts):
       (windows):
         - echo 'windows'
-      (linux):
-        - echo 'linux'
-      (macos):
-        - echo 'macos'
+      (default):
+        - echo 'default'

@@ -51,10 +51,13 @@ class ListCommand extends Command {
     final registry = ScriptsRegistry(scripts);
     final paths = registry.getPaths()..sort();
 
-    final definitions = paths.map((path) => registry.getDefinition(path)).toList();
+    final definitions =
+        paths.map((path) => registry.getDefinition(path)).toList();
     final descriptions = definitions.map((def) => def.description).toList();
-    final references =
-        definitions.map((def) => def.scripts.where((s) => s.startsWith(referencePrefix)).toList()).toList();
+    final references = definitions
+        .map((def) =>
+            def.scripts.where((s) => s.startsWith(referencePrefix)).toList())
+        .toList();
 
     final buffer = StringBuffer();
 
@@ -71,10 +74,12 @@ class ListCommand extends Command {
       final refs = references[pathIndex];
 
       final formattedDescription = showDescriptions && description != null
-          ? '${''.padLeft(longestScriptLength + 4 - path.length)} - $description'.gray()
+          ? '${''.padLeft(longestScriptLength + 4 - path.length)} - $description'
+              .gray()
           : '';
 
-      buffer.writeln('${_getPrefix(pathIndex, paths.length)} $path $formattedDescription');
+      buffer.writeln(
+          '${_getPrefix(pathIndex, paths.length)} $path $formattedDescription');
 
       for (final refEntry in refs.asMap().entries) {
         final referenceIndex = refEntry.key;

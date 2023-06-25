@@ -30,8 +30,5 @@ test_os:
   (scripts):
     (windows):
       - echo 'windows'
-    (mac):
-      - echo 'mac'
     (default):
       - echo 'default'
-      - echo 'hello'

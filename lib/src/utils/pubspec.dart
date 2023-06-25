@@ -1,7 +1,8 @@
 import 'dart:io';
 
 import 'package:derry/error.dart' show DerryError, ErrorCode;
-import 'package:derry/utils.dart' show JsonMap, ToJsonMapExtension, readYamlMap, Info;
+import 'package:derry/utils.dart'
+    show JsonMap, ToJsonMapExtension, readYamlMap, Info;
 import 'package:path/path.dart' as path;
 
 const String pubspecFileName = 'pubspec.yaml';
@@ -12,7 +13,8 @@ const String scriptsKey = 'scripts';
 /// for .
 class Pubspec {
   /// File path of `pubspec.yaml` in current directory.
-  static final String filePath = path.join(Directory.current.path, pubspecFileName);
+  static final String filePath =
+      path.join(Directory.current.path, pubspecFileName);
 
   /// Text content of `pubspec.yaml` once it has been read,
   /// used as a mean of memoization.

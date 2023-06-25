@@ -32,9 +32,7 @@ enum OS {
 
   static OS fromString(String key) {
     if (!OS.getKeys().contains(key)) {
-      throw DerryError(type: ErrorCode.invalidOs, body: {
-        'os': key
-      });
+      throw DerryError(type: ErrorCode.invalidOs, body: {'os': key});
     }
     return OS.values.firstWhere((element) => element.key == key);
   }

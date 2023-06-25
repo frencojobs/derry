@@ -5,7 +5,8 @@ import 'package:derry/utils.dart';
 import 'package:path/path.dart' as path;
 
 /// Gets the absolute path of a file.
-String _getAbsolutePath(String filePath) => path.normalize(path.absolute(filePath));
+String _getAbsolutePath(String filePath) =>
+    path.normalize(path.absolute(filePath));
 
 /// The `derry source` command
 /// which prints out the current config file location.
@@ -20,7 +21,8 @@ class SourceCommand extends Command {
 
     super.argParser.addFlag(
           'check',
-          help: 'determine whether to check if the config file exists and is valid or not',
+          help:
+              'determine whether to check if the config file exists and is valid or not',
           defaultsTo: true,
         );
   }

@@ -21,9 +21,7 @@ void handleError(DerryError e) {
       buffer.writeln('$prefix Unable to find script named "$scriptRun".');
 
       final bestMatch =
-          StringSimilarity
-              .findBestMatch(scriptRun, suggestions)
-              .bestMatch;
+          StringSimilarity.findBestMatch(scriptRun, suggestions).bestMatch;
       if (bestMatch.rating != null && bestMatch.rating! >= 0.5) {
         buffer.writeln();
         buffer.writeln('$prefix Did you mean to run this?');
@@ -35,15 +33,13 @@ void handleError(DerryError e) {
       final scriptRun = e.body['script'] as String;
       final paths = e.body['paths'] as List<String>? ?? [];
       final nestedScripts =
-      paths.where((path) => path.startsWith('$scriptRun ')).toList();
+          paths.where((path) => path.startsWith('$scriptRun ')).toList();
 
       if (nestedScripts.isNotEmpty) {
         buffer.writeln('$prefix Script "$scriptRun" is a nested script.');
 
         final bestMatch =
-            StringSimilarity
-                .findBestMatch(scriptRun, nestedScripts)
-                .bestMatch;
+            StringSimilarity.findBestMatch(scriptRun, nestedScripts).bestMatch;
         if (bestMatch.rating != null && bestMatch.rating! >= 0.5) {
           buffer.writeln();
           buffer.writeln('$prefix Did you mean to run this?');
@@ -106,12 +102,12 @@ void handleError(DerryError e) {
       final script = e.body['script'] as String;
 
       buffer.writeln(
-          "$script doesn't include a definition of script for your current OS (${Platform
-              .operatingSystem})");
+          "$script doesn't include a definition of script for your current OS (${Platform.operatingSystem})");
       break;
     case ErrorCode.invalidOs:
       final os = e.body['os'] as String;
-      buffer.writeln('Operating system $os is not supported. Choose between linux, windows and mac, or provide a default.');
+      buffer.writeln(
+          'Operating system $os is not supported. Choose between linux, windows and mac, or provide a default.');
   }
 
   stderr.write(buffer.toString());

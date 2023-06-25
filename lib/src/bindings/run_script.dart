@@ -35,7 +35,8 @@ String getBlobFilename() {
 
 /// Run a given input string in console in native code via dart ffi
 Future<int> runScript(String script) async {
-  final resolvedPackageUri = await Isolate.resolvePackageUri(Uri.parse(packageUri));
+  final resolvedPackageUri =
+      await Isolate.resolvePackageUri(Uri.parse(packageUri));
   if (resolvedPackageUri == null) {
     throw DerryError(
       type: ErrorCode.invalidPackageUri,
@@ -43,7 +44,9 @@ Future<int> runScript(String script) async {
     );
   }
 
-  final objectFilePath = resolvedPackageUri.resolve(path.join(blobsPath, getBlobFilename())).toFilePath();
+  final objectFilePath = resolvedPackageUri
+      .resolve(path.join(blobsPath, getBlobFilename()))
+      .toFilePath();
   late ffi.DynamicLibrary dylib;
   try {
     dylib = ffi.DynamicLibrary.open(objectFilePath);
@@ -55,7 +58,8 @@ Future<int> runScript(String script) async {
   }
 
   final nativeRunScriptFn = dylib
-      .lookup<ffi.NativeFunction<ffi.Int32 Function(ffi.Pointer<Utf8>)>>('run_script')
+      .lookup<ffi.NativeFunction<ffi.Int32 Function(ffi.Pointer<Utf8>)>>(
+          'run_script')
       .asFunction<int Function(ffi.Pointer<Utf8>)>();
 
   return nativeRunScriptFn(script.toNativeUtf8());

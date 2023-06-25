@@ -5,7 +5,7 @@ import '../../error.dart';
 /// enum for OS types.
 enum OS {
   linux(key: '(linux)'),
-  macos(key: '(macos)'),
+  mac(key: '(mac)'),
   windows(key: '(windows)'),
   defaultOs(key: '(default)');
 
@@ -25,15 +25,15 @@ enum OS {
   bool matchesCurrentOS() {
     if (this == OS.defaultOs) return true;
     if (Platform.isLinux && this == OS.linux) return true;
-    if (Platform.isMacOS && this == OS.macos) return true;
+    if (Platform.isMacOS && this == OS.mac) return true;
     if (Platform.isWindows && this == OS.windows) return true;
     return false;
   }
 
   static OS fromString(String key) {
     if (!OS.getKeys().contains(key)) {
-      throw DerryError(type: ErrorCode.invalidScript, body: {
-        key: "OS '$key' is not supported."
+      throw DerryError(type: ErrorCode.invalidOs, body: {
+        'os': key
       });
     }
     return OS.values.firstWhere((element) => element.key == key);

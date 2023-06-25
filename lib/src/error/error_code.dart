@@ -33,6 +33,10 @@ enum ErrorCode {
   /// throw when a yaml file is not a map
   invalidYamlMap,
 
-  /// throw when an operating system in the yaml file is not supported
+  /// throw when the os specific script syntax is used
+  /// but no script is defined for the current os
+  noScriptForCurrentOs,
+
+  /// throw when an os defined in yaml file is not valid
   invalidOs
 }

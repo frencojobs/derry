@@ -78,7 +78,7 @@ class ScriptsRegistry {
         }
       }
 
-      serializedDefinitions[scriptString] = Definition.from(scriptFound);
+      serializedDefinitions[scriptString] = Definition.from(scriptFound, scriptString);
     }
 
     return serializedDefinitions[scriptString]!;

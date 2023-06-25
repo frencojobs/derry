@@ -1,7 +1,13 @@
 import 'package:derry/bindings.dart' as bindings;
 import 'package:derry/error.dart' show DerryError, ErrorCode;
 import 'package:derry/utils.dart'
-    show JsonMap, JsonMapExtension, Reference, Definition, referencePrefix, scriptsDefinitionKey;
+    show
+        JsonMap,
+        JsonMapExtension,
+        Reference,
+        Definition,
+        referencePrefix,
+        scriptsDefinitionKey;
 
 /// Join a list of [String] with Space as delimiter.
 String _joinStrings(List<String> list) => list.map((s) => s.trim()).join(' ');
@@ -58,7 +64,9 @@ class ScriptsRegistry {
       }
 
       // for when script is not a type we want
-      if (scriptFound is! Map && scriptFound is! List && scriptFound is! String) {
+      if (scriptFound is! Map &&
+          scriptFound is! List &&
+          scriptFound is! String) {
         throw DerryError(
           type: ErrorCode.invalidScript,
           body: {'script': scriptString},
@@ -68,7 +76,8 @@ class ScriptsRegistry {
       // for when script is a map
       if (scriptFound is Map) {
         final scripts = scriptFound[scriptsDefinitionKey];
-        final validity = scripts != null && (scripts is List || scripts is String || scripts is Map);
+        final validity = scripts != null &&
+            (scripts is List || scripts is String || scripts is Map);
 
         if (!validity) {
           throw DerryError(
@@ -78,7 +87,8 @@ class ScriptsRegistry {
         }
       }
 
-      serializedDefinitions[scriptString] = Definition.from(scriptFound, scriptString);
+      serializedDefinitions[scriptString] =
+          Definition.from(scriptFound, scriptName: scriptString);
     }
 
     return serializedDefinitions[scriptString]!;
@@ -119,8 +129,10 @@ class ScriptsRegistry {
         );
       } else {
         // replace all \$ with $, they are not valid references
-        final normalizedScript = script.replaceAll('\\$referencePrefix', referencePrefix);
-        exitCode = await bindings.runScript(_joinStrings([normalizedScript, extra]));
+        final normalizedScript =
+            script.replaceAll('\\$referencePrefix', referencePrefix);
+        exitCode =
+            await bindings.runScript(_joinStrings([normalizedScript, extra]));
       }
     }
 

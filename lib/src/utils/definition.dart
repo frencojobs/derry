@@ -53,7 +53,7 @@ class Definition extends Equatable {
 
   /// Creates a [Definition] instance from a [dynamic] input.
   /// The input can be a [Map], [List] or [String].
-  factory Definition.from(dynamic input, String scriptString) {
+  factory Definition.from(dynamic input, {String? scriptName}) {
     if (input is Map) {
       final description = input[descriptionDefinitionKey] as String?;
       final allScripts = input[scriptsDefinitionKey] as dynamic;
@@ -62,7 +62,7 @@ class Definition extends Equatable {
       if (scripts.isEmpty) {
         throw DerryError(
           type: ErrorCode.noScriptForCurrentOs,
-          body: {'script': scriptString},
+          body: {'script': scriptName},
         );
       }
 

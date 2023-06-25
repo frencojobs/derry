@@ -101,6 +101,19 @@ build:
 
 And you can use them by calling `derry build windows` on windows and `derry build mac` on macOS.
 
+As an alternative, you could define the platform specific code as follows:
+```
+build:
+  (scripts):
+    (windows):
+      - echo 0 # do something
+    (mac):
+      - echo 1 # do something else
+    (default):
+      - echo 2
+```
+And then use it by just calling `build`.
+
 **Pre and post scripts**
 
 With pre & post scripts, you can easily define a script to run before and after a specific script without hassling with references. Derry automatically understands them from the names.

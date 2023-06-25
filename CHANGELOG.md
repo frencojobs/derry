@@ -1,3 +1,7 @@
+## 1.5.1
+
+- Add support for platform dependent scripts
+
 ## 1.5.0
 
 - Add support for M1 Macs
